@@ -196,6 +196,27 @@
                 <a href="register.html" class="register-link">Don't have an account? Register here</a>
             </div>
         </div>
+        <script>
+            // 1. Get the form element from the HTML
+            const loginForm = document.querySelector('form');
+
+            // 2. Add an "event listener" to trigger when the login button is clicked
+            loginForm.addEventListener('submit', function(e) {
+                // Prevent the form from performing a real server submission
+                // (This is necessary because this is a static HTML prototype)
+                e.preventDefault();
+
+                // 3. Check which role radio button is currently selected
+                const role = document.querySelector('input[name="role"]:checked').value;
+
+                // 4. Redirect the browser to the corresponding dashboard page
+                if (role === 'Manager') {
+                    window.location.href = 'manager-dashboard.html';
+                } else {
+                    window.location.href = 'student-dashboard.html';
+                }
+            });
+        </script>
         
     </body>
 </html>
