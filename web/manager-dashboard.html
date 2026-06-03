@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Sukan Manager Dashboard</title>
+
+    <link rel="stylesheet" href="manager-dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <h1>E-SUKAN MANAGER DASHBOARD</h1>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Manage Facilities</a>
+            <a href="#">Manage Equipment</a>
+            <a href="#">Reports</a>
+            <button class="logout-btn">Logout</button>
+        </nav>
+
+    </header>
+
+    <div class="container">
+
+        <h2>System Overview</h2>
+
+        <div class="summary">
+
+            <div class="card">
+                <h3>Total Bookings</h3>
+                <p>120</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Facilities</h3>
+                <p>8</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Equipment</h3>
+                <p>56</p>
+            </div>
+
+            <div class="card">
+                <h3>Available Equipment</h3>
+                <p>42</p>
+            </div>
+
+        </div>
+
+        <!-- Recent Booking Requests -->
+
+        <div class="table-section">
+
+            <h2>Recent Booking Requests</h2>
+
+            <table>
+
+                <tr>
+                    <th>Student</th>
+                    <th>Facility</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Ali</td>
+                    <td>Badminton Court</td>
+                    <td>10 Jun 2026</td>
+                    <td>Pending</td>
+                </tr>
+
+                <tr>
+                    <td>Siti</td>
+                    <td>Football Field</td>
+                    <td>12 Jun 2026</td>
+                    <td>Approved</td>
+                </tr>
+
+                <tr>
+                    <td>John</td>
+                    <td>Basketball Court</td>
+                    <td>13 Jun 2026</td>
+                    <td>Pending</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Equipment Alerts -->
+
+        <div class="table-section">
+
+            <h2>Equipment Alerts</h2>
+
+            <table>
+
+                <tr>
+                    <th>Equipment</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Football #3</td>
+                    <td>Damaged</td>
+                </tr>
+
+                <tr>
+                    <td>Basketball #5</td>
+                    <td>Maintenance</td>
+                </tr>
+
+                <tr>
+                    <td>Volleyball Net A</td>
+                    <td>Damaged</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Charts -->
+
+        <div class="charts">
+
+            <div class="chart-item">
+                <h2>Monthly Bookings</h2>
+                <canvas id="bookingChart"></canvas>
+            </div>
+
+            <div class="chart-item">
+                <h2>Most Popular Facilities</h2>
+                <canvas id="facilityChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        /* Monthly Bookings */
+
+        new Chart(document.getElementById("bookingChart"), {
+
+            type: "bar",
+
+            data: {
+                labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+                datasets: [{
+                    label: "Total Bookings",
+                    data: [45,60,55,80,90,75],
+                    backgroundColor: "#18392b"
+                }]
+            }
+
+        });
+
+        /* Most Popular Facilities */
+
+        new Chart(document.getElementById("facilityChart"), {
+
+            type: "pie",
+
+            data: {
+                labels: [
+                    "Badminton Court",
+                    "Futsal Court",
+                    "Basketball Court",
+                    "Football Field"
+                ],
+
+                datasets: [{
+                    data: [40,30,20,10],
+
+                    backgroundColor: [
+                        "#18392b",
+                        "#2e8b57",
+                        "#f59e0b",
+                        "#dc3545"
+                    ]
+                }]
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

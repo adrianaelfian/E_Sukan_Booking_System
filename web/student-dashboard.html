@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Sukan Student Dashboard</title>
+
+    <link rel="stylesheet" href="student-dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <h1>E-SUKAN DASHBOARD</h1>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Book Facility</a>
+            <a href="#">Book Equipment</a>
+            <a href="#">My History</a>
+            <button class="logout-btn">Logout</button>
+        </nav>
+
+    </header>
+    
+    <h2>Quick Actions</h2>
+
+<div class="quick-actions">
+
+    <a href="bookFacility.html" class="action-card">
+        <h3>Book a Sport Facility</h3>
+        <p>Reserve badminton, futsal or basketball courts.</p>
+    </a>
+
+    <a href="bookEquipment.html" class="action-card">
+        <h3>Rent Sports Equipment</h3>
+        <p>Borrow sports equipment for training and games.</p>
+    </a>
+
+    <a href="history.html" class="action-card">
+        <h3>View My Bookings</h3>
+        <p>Check all current and previous bookings.</p>
+    </a>
+
+</div>
+
+    <div class="container">
+
+        <!-- Statistics -->
+        <h2>System Overview</h2>
+
+        <div class="summary">
+
+            <div class="card">
+                <h3>My Bookings</h3>
+                <p>5</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Rentals</h3>
+                <p>2</p>
+            </div>
+
+            <div class="card">
+                <h3>Available Facilities</h3>
+                <p>8</p>
+            </div>
+
+            <div class="card">
+                <h3>Available Equipment</h3>
+                <p>42</p>
+            </div>
+
+        </div>
+
+        <!-- Upcoming Bookings -->
+        <div class="table-section">
+
+            <h2>Upcoming Bookings</h2>
+
+            <table>
+
+                <tr>
+                    <th>Facility</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Badminton Court A</td>
+                    <td>15 Jun 2026</td>
+                    <td>Confirmed</td>
+                </tr>
+
+                <tr>
+                    <td>Futsal Court 1</td>
+                    <td>16 Jun 2026</td>
+                    <td>Pending</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Equipment Rental -->
+        <div class="table-section">
+
+            <h2>My Equipment Rentals</h2>
+
+            <table>
+
+                <tr>
+                    <th>Equipment</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Badminton Racket</td>
+                    <td>17 Jun 2026</td>
+                    <td>Active</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- Charts -->
+        <div class="charts">
+
+            <div class="chart-item">
+                <h2>Peak Usage Hours</h2>
+                <canvas id="usageChart"></canvas>
+            </div>
+
+            <div class="chart-item">
+                <h2>Equipment Availability</h2>
+                <canvas id="equipmentChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        new Chart(document.getElementById("usageChart"), {
+
+            type: "line",
+
+            data: {
+                labels: ["8AM","10AM","12PM","2PM","4PM","6PM"],
+                datasets: [{
+                    label: "Facility Usage",
+                    data: [5,12,18,25,20,30],
+                    borderColor: "#28a745",
+                    backgroundColor: "rgba(40,167,69,0.2)",
+                    fill: true,
+                    tension: 0.4
+                }]
+            }
+
+        });
+
+        new Chart(document.getElementById("equipmentChart"), {
+
+            type: "doughnut",
+
+            data: {
+                labels: ["Available","Borrowed","Maintenance"],
+                datasets: [{
+                    data: [42,10,4],
+                    backgroundColor: [
+                        "#28a745",
+                        "#dc3545",
+                        "#ffc107"
+                    ]
+                }]
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
