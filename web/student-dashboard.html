@@ -18,8 +18,6 @@
         <h1>E-SUKAN DASHBOARD</h1>
 
         <nav>
-            <a href="booking-facility.html">Book Facility</a>
-            <a href="booking-equipment.html">Book Equipment</a>
             <a href="logout.html" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
         </nav>
 
@@ -45,6 +43,52 @@
     </a>
 
 </div>
+
+    <!-- ========================================== -->
+    <!-- JADUAL STATUS RINGKAS DENGAN BUTTON EDIT & CANCEL -->
+    <!-- ========================================== -->
+    <div class="container" style="margin-bottom: -20px;">
+        <div class="table-section" style="margin-top: 10px; margin-bottom: 20px;">
+            <h2>My Quick Status Overview</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 15px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <thead>
+                    <tr style="background-color: #f8f9fa; text-align: left;">
+                        <th style="padding: 12px 15px; color: #18392b; font-weight: bold;">Item / Facility</th>
+                        <th style="padding: 12px 15px; color: #18392b; font-weight: bold;">Date</th>
+                        <th style="padding: 12px 15px; color: #18392b; font-weight: bold;">Status</th>
+                        <th style="padding: 12px 15px; color: #18392b; font-weight: bold;">Actions</th> <!-- Kolum Butang -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">Badminton Court A</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">15 Jun 2026</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+                            <span style="background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Confirmed</span>
+                        </td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+                            <!-- Jika dah Confirmed, butang disekat (disabled) -->
+                            <button disabled style="background-color: #cccccc; color: #666; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: not-allowed; font-size: 0.8rem; margin-right: 5px;">Edit</button>
+                            <button disabled style="background-color: #cccccc; color: #666; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: not-allowed; font-size: 0.8rem;">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">Futsal Court 1</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">16 Jun 2026</td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+                            <span style="background-color: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Pending</span>
+                        </td>
+                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+                            <!-- Jika masih Pending, student boleh klik Edit & Cancel -->
+                            <a href="booking-facility.html" style="background-color: #ffc107; color: #333; text-decoration: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; display: inline-block;">Edit</a>
+                            <button onclick="alert('Booking for Futsal Court 1 has been canceled successfully!')" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">Cancel</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- ========================================== -->
 
     <div class="container">
 
