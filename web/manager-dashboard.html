@@ -18,11 +18,9 @@
         <h1>E-SUKAN MANAGER DASHBOARD</h1>
 
         <nav>
-            <a href="#">Home</a>
             <a href="#">Manage Facilities</a>
             <a href="view-bookings.html.html">Booking Management</a>            
-            <a href="#">Reports</a>
-            <a href="logout.html" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+            <button class="logout-btn">Logout</button>
         </nav>
 
     </header>
@@ -128,7 +126,6 @@
         </div>
 
         <!-- Charts -->
-
         <div class="charts">
 
             <div class="chart-item">
@@ -137,8 +134,8 @@
             </div>
 
             <div class="chart-item">
-                <h2>Most Popular Facilities</h2>
-                <canvas id="facilityChart"></canvas>
+                <h2>Equipment Availability</h2>
+                <canvas id="equipmentChart"></canvas>
             </div>
 
         </div>
@@ -146,7 +143,7 @@
     </div>
 
     <script>
-
+        
         /* Monthly Bookings */
 
         new Chart(document.getElementById("bookingChart"), {
@@ -164,28 +161,19 @@
 
         });
 
-        /* Most Popular Facilities */
 
-        new Chart(document.getElementById("facilityChart"), {
+        new Chart(document.getElementById("equipmentChart"), {
 
-            type: "pie",
+            type: "doughnut",
 
             data: {
-                labels: [
-                    "Badminton Court",
-                    "Futsal Court",
-                    "Basketball Court",
-                    "Football Field"
-                ],
-
+                labels: ["Available","Borrowed","Maintenance"],
                 datasets: [{
-                    data: [40,30,20,10],
-
+                    data: [42,10,4],
                     backgroundColor: [
-                        "#18392b",
-                        "#2e8b57",
-                        "#f59e0b",
-                        "#dc3545"
+                        "#28a745",
+                        "#dc3545",
+                        "#ffc107"
                     ]
                 }]
             }
