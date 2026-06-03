@@ -2,45 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Booking - E-Sukan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Facility - E-Sukan</title>
     <style>
-        /* Reset margin asal browser */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: Arial, sans-serif; 
-            background: #f5f7fb; /* Tukar latar belakang luar jadi kelabu lembut supaya kotak putih nampak menonjol */
+            background: #f5f7fb; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* BAHAGIAN ATAS: Header Hijau Tua E-Sukan */
+        /* Header Banner */
         .header-banner {
             width: 100%;
-            background: #18392b; /* Warna hijau tua branding awak */
+            background: #18392b;
             padding: 40px 20px;
             text-align: center;
             color: white;
         }
 
-        .header-banner h1 {
-            font-size: 2.5rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
+        .header-banner h1 { font-size: 2.5rem; letter-spacing: 3px; text-transform: uppercase; }
+        .header-banner p { color: #a3b899; font-size: 0.95rem; margin-top: 5px; }
 
-        .header-banner p {
-            color: #a3b899;
-            font-size: 0.95rem;
-        }
-
-        /* BAHAGIAN BAWAH: Ruang untuk letak borang di tengah-tengah */
+        
         .main-content {
             flex: 1;
             display: flex;
@@ -49,7 +35,6 @@
             padding: 40px 20px;
         }
 
-        /* Kotak Putih Borang Anda */
         .container { 
             width: 100%;
             max-width: 500px; 
@@ -59,12 +44,7 @@
             box-shadow: 0px 8px 25px rgba(0,0,0,0.05);
         }
         
-        .container h2 {
-            color: #18392b;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            text-align: center;
-        }
+        .container h2 { color: #18392b; margin-bottom: 15px; text-align: center; }
 
         label { display: block; font-weight: bold; margin-top: 15px; color: #333; }
         
@@ -74,25 +54,24 @@
             margin-top: 5px; 
             border: 1px solid #ddd; 
             border-radius: 5px; 
-            box-sizing: border-box;
+            font-size: 0.95rem;
         }
 
-        input:focus, select:focus {
-            border-color: #ff9800; /* Amber highlight bila klik input */
-            outline: none;
-        }
+        input:focus, select:focus { border-color: #28a745; outline: none; }
         
+        /* Button Confirm */
         button { 
             background: #28a745; 
             color: white; 
-            padding: 12px 20px; 
+            padding: 12px; 
             border: none; 
             border-radius: 5px; 
             margin-top: 25px; 
             cursor: pointer; 
-            width: 100%; /* Lebarkan butang biar nampak kemas */
+            width: 100%; 
             font-weight: bold;
             font-size: 1rem;
+            transition: background 0.3s;
         }
         
         button:hover { background: #218838; }
@@ -102,7 +81,7 @@
             margin-top: 20px; 
             color: #666; 
             text-decoration: none; 
-            text-align: center;
+            text-align: center; 
             font-size: 0.9rem;
         }
         
@@ -112,33 +91,43 @@
 <body>
 
     <div class="header-banner">
-        <h1>UPDATE</h1>
-        <p>Modify existing schedules, update allocation timelines, and save structural changes.</p>
+        <h1>FACILITY RESERVATION</h1>
+        <p>Book your preferred sports court and secure your slot.</p>
     </div>
 
     <div class="main-content">
         <div class="container">
-            <h2>Edit Booking Parameters</h2>
+            <h2>Book a Sport Facility</h2>
             
-            <form action="view-bookings.html" method="GET">
-                <input type="hidden" name="bookingId" value="1">
+            <form action="#" method="post">
                 
+                <label>Select Facility:</label>
+                <select name="facilityId" required>
+                    <option value="">-- Select Court --</option>
+                    <option value="1">Badminton Court A</option>
+                    <option value="2">Badminton Court B</option>
+                    <option value="3">Futsal Court 1</option>
+                    <option value="4">Futsal Court 2</option>
+                    <option value="5">Basketball Court</option>
+                </select>
+
                 <label>Booking Date:</label>
-                <input type="date" name="bookingDate" value="2026-06-15">
-                
-                <label>Start Time:</label>
-                <input type="time" name="startTime" value="10:00">
-                
-                <label>End Time:</label>
-                <input type="time" name="endTime" value="12:00">
-                
-                <label>Number of Players:</label>
-                <input type="number" name="numPlayers" value="4">
-                
-                <button type="submit">Update Booking</button>
+                <input type="date" name="bookingDate" required>
+
+                <label>Select Time Slot:</label>
+                <select name="timeSlot" required>
+                    <option value="">-- Select Time --</option>
+                    <option value="08:00">08:00 AM - 10:00 AM</option>
+                    <option value="10:00">10:00 AM - 12:00 PM</option>
+                    <option value="14:00">02:00 PM - 04:00 PM</option>
+                    <option value="16:00">04:00 PM - 06:00 PM</option>
+                    <option value="20:00">08:00 PM - 10:00 PM</option>
+                </select>
+
+                <button type="submit">Confirm Booking</button>
             </form>
             
-            <a href="view-bookings.html" class="btn-back">← Back to Bookings</a>
+            <a href="student-dashboard.html" class="btn-back">← Back to Dashboard</a>
         </div>
     </div>
 
