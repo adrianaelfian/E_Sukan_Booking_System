@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>E-Sukan Logout</title>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body { 
+                font-family: Arial, sans-serif; 
+                background-color: #18392b;
+                min-height: 100vh; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .logout-container { 
+                width: 450px; 
+                background: white; 
+                padding: 40px;
+                border-radius: 12px;
+                box-shadow: 0px 10px 30px rgba(0,0,0,0.3);
+                color: #333; 
+            }
+
+            h2 {
+                color: #18392b;
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+
+            p {
+                color: #555;
+                font-size: 1rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+
+            .btn-link {
+                display: inline-block;
+                background-color: #28a745; 
+                color: white;
+                padding: 14px 28px;
+                text-decoration: none;
+                border-radius: 6px;
+                font-weight: bold;
+                font-size: 0.95rem;
+                transition: background 0.3s;
+            }
+
+            .btn-link:hover {
+                background-color: #218838;
+            }
+
+            @media (max-width: 480px) {
+                .logout-container {
+                    width: 100%;
+                    padding: 30px 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="logout-container">
+            <h2>Logged Out</h2>
+            <p>Thank you for using our booking system.</p>
+            
+            <a href="login.html" class="btn-link">Click here to login</a>
+        </div>
+
+    </body>
+</html>
