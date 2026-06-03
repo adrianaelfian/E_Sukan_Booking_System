@@ -4,31 +4,143 @@
     <meta charset="UTF-8">
     <title>Edit Booking - E-Sukan</title>
     <style>
-        body { font-family: Arial; margin: 0; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 10px; }
-        h1 { color: #ff9800; text-align: center; }
-        label { display: block; font-weight: bold; margin-top: 15px; }
-        input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; }
-        button { background: #ff9800; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer; }
-        .btn-back { display: inline-block; margin-top: 15px; color: #666; text-decoration: none; }
+        /* Reset margin asal browser */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f5f7fb; /* Tukar latar belakang luar jadi kelabu lembut supaya kotak putih nampak menonjol */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* BAHAGIAN ATAS: Header Hijau Tua E-Sukan */
+        .header-banner {
+            width: 100%;
+            background: #18392b; /* Warna hijau tua branding awak */
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-banner h1 {
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .header-banner p {
+            color: #a3b899;
+            font-size: 0.95rem;
+        }
+
+        /* BAHAGIAN BAWAH: Ruang untuk letak borang di tengah-tengah */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Kotak Putih Borang Anda */
+        .container { 
+            width: 100%;
+            max-width: 500px; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.05);
+        }
+        
+        .container h2 {
+            color: #18392b;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        label { display: block; font-weight: bold; margin-top: 15px; color: #333; }
+        
+        input, select { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 5px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #ff9800; /* Amber highlight bila klik input */
+            outline: none;
+        }
+        
+        button { 
+            background: #28a745; 
+            color: white; 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            margin-top: 25px; 
+            cursor: pointer; 
+            width: 100%; /* Lebarkan butang biar nampak kemas */
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        button:hover { background: #218838; }
+        
+        .btn-back { 
+            display: block; 
+            margin-top: 20px; 
+            color: #666; 
+            text-decoration: none; 
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .btn-back:hover { color: #18392b; text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>✏️ Edit Booking</h1>
-        <form action="#" method="post">
-            <input type="hidden" name="bookingId" value="1">
-            <label>Booking Date:</label>
-            <input type="date" name="bookingDate" value="2024-06-15">
-            <label>Start Time:</label>
-            <input type="time" name="startTime" value="10:00">
-            <label>End Time:</label>
-            <input type="time" name="endTime" value="12:00">
-            <label>Number of Players:</label>
-            <input type="number" name="numPlayers" value="4">
-            <button type="submit">Update Booking</button>
-        </form>
-        <a href="view-bookings.html" class="btn-back">← Back to Bookings</a>
+
+    <div class="header-banner">
+        <h1>UPDATE</h1>
+        <p>Modify existing schedules, update allocation timelines, and save structural changes.</p>
     </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h2>Edit Booking Parameters</h2>
+            
+            <form action="view-bookings.html" method="GET">
+                <input type="hidden" name="bookingId" value="1">
+                
+                <label>Booking Date:</label>
+                <input type="date" name="bookingDate" value="2026-06-15">
+                
+                <label>Start Time:</label>
+                <input type="time" name="startTime" value="10:00">
+                
+                <label>End Time:</label>
+                <input type="time" name="endTime" value="12:00">
+                
+                <label>Number of Players:</label>
+                <input type="number" name="numPlayers" value="4">
+                
+                <button type="submit">Update Booking</button>
+            </form>
+            
+            <a href="view-bookings.html" class="btn-back">← Back to Bookings</a>
+        </div>
+    </div>
+
 </body>
 </html>

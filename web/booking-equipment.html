@@ -4,43 +4,126 @@
     <meta charset="UTF-8">
     <title>Book Equipment - E-Sukan</title>
     <style>
-        body { font-family: Arial; margin: 0; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 10px; }
-        h1 { color: #ff9800; text-align: center; }
-        label { display: block; font-weight: bold; margin-top: 15px; }
-        input, select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; }
-        button { background: #ff9800; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer; }
-        .btn-back { display: inline-block; margin-top: 15px; color: #666; text-decoration: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f5f7fb; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Hijau Tua */
+        .header-banner {
+            width: 100%;
+            background: #18392b;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-banner h1 { font-size: 2.5rem; letter-spacing: 3px; text-transform: uppercase; }
+        .header-banner p { color: #a3b899; font-size: 0.95rem; margin-top: 5px; }
+
+        /* Ruang Borang */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container { 
+            width: 100%;
+            max-width: 500px; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.05);
+        }
+        
+        .container h2 { color: #18392b; margin-bottom: 15px; text-align: center; }
+
+        label { display: block; font-weight: bold; margin-top: 15px; color: #333; }
+        
+        input, select { 
+            width: 100%; 
+            padding: 10px; 
+            margin-top: 5px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+        }
+
+        input:focus, select:focus { border-color: #ff9800; outline: none; }
+        
+        button { 
+            background: #28a745; 
+            color: white; 
+            padding: 12px; 
+            border: none; 
+            border-radius: 5px; 
+            margin-top: 25px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: bold;
+        }
+        
+        button:hover { background: #218838; }
+        
+        .btn-back { 
+            display: block; 
+            margin-top: 20px; 
+            color: #666; 
+            text-decoration: none; 
+            text-align: center; 
+            font-size: 0.9rem;
+        }
+        
+        .btn-back:hover { color: #18392b; text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏸 Book Equipment</h1>
-        <form action="#" method="post">
-            <label>Select Equipment:</label>
-            <select name="equipmentId" required>
-                <option value="">-- Select --</option>
-                <option value="1">Badminton Racket - Yonex</option>
-                <option value="2">Badminton Racket - ProTech</option>
-                <option value="3">Shuttlecock (Tube)</option>
-                <option value="4">Futsal Ball - Size 4</option>
-                <option value="5">Futsal Ball - Size 5</option>
-                <option value="6">Basketball</option>
-            </select>
-            <label>Quantity:</label>
-            <input type="number" name="quantity" min="1" max="10" value="1" required>
-            <label>Rental Date:</label>
-            <input type="date" name="rentalDate" required>
-            <label>Duration (hours):</label>
-            <select name="duration">
-                <option value="1">1 hour</option>
-                <option value="2">2 hours</option>
-                <option value="3">3 hours</option>
-                <option value="4">4 hours</option>
-            </select>
-            <button type="submit">Confirm Rental</button>
-        </form>
-        <a href="index.html" class="btn-back">← Back to Dashboard</a>
+
+    <div class="header-banner">
+        <h1>BOOKING</h1>
+        <p>Select your equipment and schedule your session.</p>
     </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h2>Book Equipment</h2>
+            <form action="#" method="post">
+                <label>Select Equipment:</label>
+                <select name="equipmentId" required>
+                    <option value="">-- Select --</option>
+                    <option value="1">Badminton Racket - Yonex</option>
+                    <option value="2">Badminton Racket - ProTech</option>
+                    <option value="3">Shuttlecock (Tube)</option>
+                    <option value="4">Futsal Ball - Size 4</option>
+                    <option value="5">Futsal Ball - Size 5</option>
+                    <option value="6">Basketball</option>
+                </select>
+
+                <label>Quantity:</label>
+                <input type="number" name="quantity" min="1" max="10" value="1" required>
+
+                <label>Rental Date:</label>
+                <input type="date" name="rentalDate" required>
+
+                <label>Duration (hours):</label>
+                <select name="duration">
+                    <option value="1">1 hour</option>
+                    <option value="2">2 hours</option>
+                    <option value="3">3 hours</option>
+                    <option value="4">4 hours</option>
+                </select>
+
+                <button type="submit">Confirm Rental</button>
+            </form>
+            <a href="index.html" class="btn-back">← Back to Dashboard</a>
+        </div>
+    </div>
+
 </body>
 </html>
