@@ -20,7 +20,6 @@
         <nav>
             <a href="booking-facility.html">Book Facility</a>
             <a href="booking-equipment.html">Book Equipment</a>
-            <a href="#">My History</a>
             <a href="logout.html" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
         </nav>
 
@@ -129,16 +128,17 @@
         </div>
 
         <!-- Charts -->
-        <div class="charts">
 
+        <div class="charts">
+            
             <div class="chart-item">
                 <h2>Peak Usage Hours</h2>
                 <canvas id="usageChart"></canvas>
             </div>
 
             <div class="chart-item">
-                <h2>Equipment Availability</h2>
-                <canvas id="equipmentChart"></canvas>
+                <h2>Most Popular Facilities</h2>
+                <canvas id="facilityChart"></canvas>
             </div>
 
         </div>
@@ -165,18 +165,28 @@
 
         });
 
-        new Chart(document.getElementById("equipmentChart"), {
+        /* Most Popular Facilities */
 
-            type: "doughnut",
+        new Chart(document.getElementById("facilityChart"), {
+
+            type: "pie",
 
             data: {
-                labels: ["Available","Borrowed","Maintenance"],
+                labels: [
+                    "Badminton Court",
+                    "Futsal Court",
+                    "Basketball Court",
+                    "Football Field"
+                ],
+
                 datasets: [{
-                    data: [42,10,4],
+                    data: [40,30,20,10],
+
                     backgroundColor: [
-                        "#28a745",
-                        "#dc3545",
-                        "#ffc107"
+                        "#18392b",
+                        "#2e8b57",
+                        "#f59e0b",
+                        "#dc3545"
                     ]
                 }]
             }
