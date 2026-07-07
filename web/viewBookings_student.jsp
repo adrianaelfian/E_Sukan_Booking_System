@@ -14,36 +14,43 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: #18392b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
+            width: 100%;
             margin: 0 auto;
             background: #ffffff;
-            padding: 30px 35px;
+            padding: 35px 40px;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .container h1 {
-            color: #1B5E20;
-            font-size: 24px;
+            color: #18392b;
+            font-size: 26px;
             font-weight: 700;
+            text-align: center;
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
         
         .container .subtitle {
             color: #888;
+            text-align: center;
             font-size: 14px;
             margin-bottom: 25px;
         }
         
         .section-title {
             background: #e8f5e9;
-            color: #1B5E20;
+            color: #18392b;
             padding: 8px 15px;
             border-radius: 4px;
             font-weight: 600;
@@ -58,7 +65,7 @@
         }
         
         thead {
-            background: #1B5E20;
+            background: #18392b;
             color: #ffffff;
         }
         
@@ -110,13 +117,13 @@
         .btn-back {
             display: inline-block;
             margin-top: 20px;
-            color: #888;
+            color: #666;
             text-decoration: none;
             font-size: 14px;
         }
         
         .btn-back:hover {
-            color: #333;
+            color: #18392b;
             text-decoration: underline;
         }
         
@@ -220,3 +227,4 @@
     </div>
 </body>
 </html>
+
