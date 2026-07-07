@@ -13,17 +13,22 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: #18392b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 450px;
+            max-width: 440px;
+            width: 100%;
             margin: 0 auto;
             background: #ffffff;
             padding: 40px 45px;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
         
@@ -119,13 +124,13 @@
         .btn-back {
             display: inline-block;
             margin-top: 20px;
-            color: #888;
+            color: #666;
             text-decoration: none;
             font-size: 14px;
         }
         
         .btn-back:hover {
-            color: #333;
+            color: #18392b;
             text-decoration: underline;
         }
         
@@ -186,11 +191,11 @@
                 <input type="hidden" name="bookingId" value="${booking.bookingId}">
                 <button type="submit" class="btn-delete">Yes, Cancel Booking</button>
             </form>
-            <a href="viewBookings_student.jsp" class="btn-cancel">No, Go Back</a>
+            <a href="view-bookings-student.jsp" class="btn-cancel">No, Go Back</a>
         </div>
         
         <br>
-        <a href="student-dashboard.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>
