@@ -1,116 +1,161 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Bookings - E-Sukan</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fb; min-height: 100vh; display: flex; flex-direction: column; }
-        
-        .header-banner {
-            width: 100%;
-            background: #1B5E20;
-            padding: 40px 20px;
-            text-align: center;
-            color: white;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .header-banner h1 { font-size: 2.5rem; letter-spacing: 3px; text-transform: uppercase; }
-        .header-banner p { color: #a3b899; font-size: 0.95rem; margin-top: 5px; }
-
-        .main-content {
-            flex: 1;
-            width: 100%;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        
+        .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .section-title {
-            color: #1B5E20;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            border-left: 5px solid #2E7D32;
-            padding-left: 10px;
-            margin-top: 20px;
-        }
-
-        .table-container {
-            background: white;
-            padding: 20px;
+            background: #ffffff;
+            padding: 30px 35px;
             border-radius: 10px;
-            box-shadow: 0px 8px 25px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-            overflow-x: auto;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
         }
-
+        
+        .container h1 {
+            color: #1B5E20;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .container .subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            background: #e8f5e9;
+            color: #1B5E20;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 25px 0 15px 0;
+        }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            text-align: left;
+            font-size: 14px;
         }
-
-        th, td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            font-size: 0.95rem;
+        
+        thead {
+            background: #1B5E20;
+            color: #ffffff;
         }
-
+        
         th {
-            background-color: #f8f9fa;
-            color: #1B5E20;
-            font-weight: bold;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
         }
-
-        tr:hover { background-color: #f1f3f5; }
-
-        .badge {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        
+        td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tbody tr:hover {
+            background: #f5f7fa;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
             display: inline-block;
         }
-
-        .badge-approved { background-color: #d4edda; color: #155724; }
-        .badge-pending { background-color: #fff3cd; color: #856404; }
-        .badge-rejected { background-color: #f8d7da; color: #721c24; }
-
+        
+        .status-approved {
+            background: #d4edda;
+            color: #155724;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
         .btn-action {
             padding: 6px 12px;
             border: none;
             border-radius: 4px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             font-size: 0.85rem;
             margin-right: 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         .btn-approve {
-            background-color: #2E7D32;
+            background: #2E7D32;
             color: white;
         }
+        
         .btn-approve:hover {
-            background-color: #1B5E20;
+            background: #1B5E20;
         }
+        
         .btn-reject {
-            background-color: #C62828;
+            background: #C62828;
             color: white;
         }
+        
         .btn-reject:hover {
-            background-color: #B71C1C;
+            background: #B71C1C;
         }
-
+        
         .btn-back {
             display: inline-block;
-            margin-top: 10px;
-            color: #666;
+            margin-top: 20px;
+            color: #888;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 14px;
         }
-        .btn-back:hover { color: #1B5E20; text-decoration: underline; }
-
+        
+        .btn-back:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 30px 0;
+            font-size: 14px;
+        }
+        
         .role-badge {
             display: inline-block;
             padding: 4px 15px;
@@ -130,144 +175,111 @@
     </style>
 </head>
 <body>
-
-    <div class="header-banner">
-        <h1>BOOKING APPROVAL</h1>
-    </div>
-
-    <div class="main-content">
-        
+    <div class="container">
         <div class="role-badge">Manager View - All Student Bookings</div>
         
-        <a href="index.jsp" class="btn-back">← Back to Dashboard</a>
-
-        <h2 class="section-title">Manage Facility Bookings</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Student</th>
-                        <th>Facility</th>
-                        <th>Date</th>
-                        <th>Time Slot</th>
-                        <th>Players</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:choose>
-                        <c:when test="${empty facilityBookings}">
+        <h1>Manage Bookings</h1>
+        <div class="subtitle">Review and manage all student booking requests</div>
+        
+        <div class="section-title">Facility Bookings</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Facility</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Players</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:choose>
+                    <c:when test="${empty facilityBookings}">
+                        <tr>
+                            <td colspan="8" class="empty-message">No facility booking requests found.</td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="booking" items="${facilityBookings}">
                             <tr>
-                                <td colspan="8" style="text-align:center; color:#999; padding:30px 0;">No facility booking requests found.</td>
+                                <td>${booking.bookingId}</td>
+                                <td>${booking.studentName}</td>
+                                <td>${booking.facilityName}</td>
+                                <td>${booking.bookingDate}</td>
+                                <td>${booking.startTime} - ${booking.endTime}</td>
+                                <td>${booking.playerNumber}</td>
+                                <td><span class="status-${booking.status.toLowerCase()}">${booking.status}</span></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${booking.status == 'Pending'}">
+                                            <a href="BookingServlet?action=approve&bookingId=${booking.bookingId}" class="btn-action btn-approve" onclick="return confirm('Approve this booking?')">Approve</a>
+                                            <a href="BookingServlet?action=reject&bookingId=${booking.bookingId}" class="btn-action btn-reject" onclick="return confirm('Reject this booking?')">Reject</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="processed-text">Processed</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                             </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="booking" items="${facilityBookings}">
-                                <tr>
-                                    <td>${booking.bookingId}</td>
-                                    <td>${booking.studentName}</td>
-                                    <td>${booking.facilityName}</td>
-                                    <td>${booking.bookingDate}</td>
-                                    <td>${booking.startTime} - ${booking.endTime}</td>
-                                    <td>${booking.playerNumber}</td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${booking.status == 'Approved'}">
-                                                <span class="badge badge-approved">Approved</span>
-                                            </c:when>
-                                            <c:when test="${booking.status == 'Pending'}">
-                                                <span class="badge badge-pending">Pending</span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="badge badge-rejected">Rejected</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${booking.status == 'Pending'}">
-                                                <a href="BookingServlet?action=approve&bookingId=${booking.bookingId}" class="btn-action btn-approve" onclick="return confirm('Approve this booking?')">Approve</a>
-                                                <a href="BookingServlet?action=reject&bookingId=${booking.bookingId}" class="btn-action btn-reject" onclick="return confirm('Reject this booking?')">Reject</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="processed-text">Processed</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 class="section-title">Manage Equipment Rentals</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Student</th>
-                        <th>Equipment</th>
-                        <th>Rental Date</th>
-                        <th>Quantity</th>
-                        <th>Duration</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:choose>
-                        <c:when test="${empty equipmentRentals}">
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </tbody>
+        </table>
+        
+        <div class="section-title">Equipment Rentals</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Equipment</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:choose>
+                    <c:when test="${empty equipmentRentals}">
+                        <tr>
+                            <td colspan="8" class="empty-message">No equipment rental requests found.</td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="rental" items="${equipmentRentals}">
                             <tr>
-                                <td colspan="8" style="text-align:center; color:#999; padding:30px 0;">No equipment rental requests found.</td>
+                                <td>${rental.rentalId}</td>
+                                <td>${rental.studentName}</td>
+                                <td>${rental.equipmentName}</td>
+                                <td>${rental.rentalDate}</td>
+                                <td>${rental.quantity}</td>
+                                <td>${rental.duration} hours</td>
+                                <td><span class="status-${rental.status.toLowerCase()}">${rental.status}</span></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${rental.status == 'Pending'}">
+                                            <a href="BookingServlet?action=approveRental&rentalId=${rental.rentalId}" class="btn-action btn-approve" onclick="return confirm('Approve this rental?')">Approve</a>
+                                            <a href="BookingServlet?action=rejectRental&rentalId=${rental.rentalId}" class="btn-action btn-reject" onclick="return confirm('Reject this rental?')">Reject</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="processed-text">Processed</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                             </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="rental" items="${equipmentRentals}">
-                                <tr>
-                                    <td>${rental.rentalId}</td>
-                                    <td>${rental.studentName}</td>
-                                    <td>${rental.equipmentName}</td>
-                                    <td>${rental.rentalDate}</td>
-                                    <td>${rental.quantity}</td>
-                                    <td>${rental.duration} hours</td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${rental.status == 'Approved'}">
-                                                <span class="badge badge-approved">Approved</span>
-                                            </c:when>
-                                            <c:when test="${rental.status == 'Pending'}">
-                                                <span class="badge badge-pending">Pending</span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="badge badge-rejected">Rejected</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${rental.status == 'Pending'}">
-                                                <a href="BookingServlet?action=approveRental&rentalId=${rental.rentalId}" class="btn-action btn-approve" onclick="return confirm('Approve this rental?')">Approve</a>
-                                                <a href="BookingServlet?action=rejectRental&rentalId=${rental.rentalId}" class="btn-action btn-reject" onclick="return confirm('Reject this rental?')">Reject</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="processed-text">Processed</span>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </tbody>
-            </table>
-        </div>
-
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
+            </tbody>
+        </table>
+        
+        <a href="dashboard-manager.jsp" class="btn-back">Back to Dashboard</a>
     </div>
-
 </body>
 </html>
