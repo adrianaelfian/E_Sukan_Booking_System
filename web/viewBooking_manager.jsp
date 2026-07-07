@@ -132,15 +132,14 @@
 <body>
 
     <div class="header-banner">
-        <h1>INCOMING RESERVATIONS</h1>
-        <p>Review, approve, or reject sports facility bookings and equipment rentals.</p>
+        <h1>BOOKING APPROVAL</h1>
     </div>
 
     <div class="main-content">
         
         <div class="role-badge">Manager View - All Student Bookings</div>
         
-        <a href="index.html" class="btn-back">← Back to Dashboard</a>
+        <a href="index.jsp" class="btn-back">← Back to Dashboard</a>
 
         <h2 class="section-title">Manage Facility Bookings</h2>
         <div class="table-container">
