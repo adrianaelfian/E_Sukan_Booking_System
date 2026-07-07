@@ -138,6 +138,7 @@
 <body>
     <div class="container">
         <h1>Edit Booking</h1>
+        <div class="subtitle">Modify your existing booking details</div>
         
         <%
             String message = (String) request.getAttribute("message");
