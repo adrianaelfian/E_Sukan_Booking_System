@@ -133,6 +133,7 @@
 <body>
     <div class="container">
         <h1>Book Equipment</h1>
+        <div class="subtitle">Rent sports equipment for your activities</div>
         
         <%
             String message = (String) request.getAttribute("message");
@@ -185,7 +186,7 @@
             <button type="submit" class="btn-submit">Submit Rental</button>
         </form>
         
-        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="student-dashboard.jsp" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>
