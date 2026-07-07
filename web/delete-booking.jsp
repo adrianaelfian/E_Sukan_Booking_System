@@ -185,7 +185,7 @@
                 <input type="hidden" name="bookingId" value="${booking.bookingId}">
                 <button type="submit" class="btn-delete">Yes, Cancel Booking</button>
             </form>
-            <a href="view-bookings.jsp" class="btn-cancel">No, Go Back</a>
+            <a href="viewBookings_student.jsp" class="btn-cancel">No, Go Back</a>
         </div>
         
         <br>
