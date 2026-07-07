@@ -176,7 +176,8 @@
                         <%= errorMsg %>
                     </div>
                 <% } %>
-                <form action="RegisterServlet" method="POSt">
+                <form action="RegisterServlet" method="POST">
+                    <input type="hidden" name="id" value="">
                     <div class="form-group">
                         <label>Full Name:</label>
                         <input type="text" name="fullName" placeholder="e.g. Nurul Adriana" required autocomplete="off">
