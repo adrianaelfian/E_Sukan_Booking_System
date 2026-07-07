@@ -13,7 +13,11 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: #18392b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         
@@ -23,11 +27,11 @@
             background: #ffffff;
             padding: 40px 45px;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .container h1 {
-            color: #1B5E20;
+            color: #18392b;
             font-size: 26px;
             font-weight: 700;
             text-align: center;
@@ -70,15 +74,15 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #2E7D32;
+            border-color: #18392b;
             background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.08);
+            box-shadow: 0 0 0 3px rgba(24, 57, 43, 0.08);
         }
         
         .btn-submit {
             width: 100%;
             padding: 13px;
-            background: #1B5E20;
+            background: #18392b;
             color: #ffffff;
             border: none;
             border-radius: 6px;
@@ -92,7 +96,7 @@
         }
         
         .btn-submit:hover {
-            background: #0d3d12;
+            background: #0d2a1f;
         }
         
         .btn-back {
@@ -105,7 +109,7 @@
         }
         
         .btn-back:hover {
-            color: #333;
+            color: #18392b;
             text-decoration: underline;
         }
         
@@ -186,7 +190,7 @@
             <button type="submit" class="btn-submit">Submit Rental</button>
         </form>
         
-        <a href="student-dashboard.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>
