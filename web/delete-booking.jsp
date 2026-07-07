@@ -153,7 +153,6 @@
 <body>
     <div class="container">
         <h1>Cancel Booking</h1>
-        <div class="subtitle">Confirm cancellation of your booking</div>
         
         <%
             String message = (String) request.getAttribute("message");
@@ -190,7 +189,7 @@
         </div>
         
         <br>
-        <a href="index.html" class="btn-back">Back to Dashboard</a>
+        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>
