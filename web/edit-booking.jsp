@@ -13,21 +13,26 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: #18392b;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 520px;
+            max-width: 440px;
+            width: 100%;
             margin: 0 auto;
             background: #ffffff;
             padding: 40px 45px;
             border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .container h1 {
-            color: #1B5E20;
+            color: #18392b;
             font-size: 26px;
             font-weight: 700;
             text-align: center;
@@ -43,7 +48,7 @@
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         
         .form-group label {
@@ -70,9 +75,9 @@
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #2E7D32;
+            border-color: #18392b;
             background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.08);
+            box-shadow: 0 0 0 3px rgba(24, 57, 43, 0.08);
         }
         
         .form-group input[readonly] {
@@ -82,12 +87,12 @@
         
         .btn-update {
             width: 100%;
-            padding: 13px;
-            background: #1B5E20;
+            padding: 12px;
+            background: #18392b;
             color: #ffffff;
             border: none;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: background 0.3s;
@@ -97,20 +102,20 @@
         }
         
         .btn-update:hover {
-            background: #0d3d12;
+            background: #0d2a1f;
         }
         
         .btn-back {
             display: inline-block;
             margin-top: 15px;
-            color: #888;
+            color: #666;
             text-decoration: none;
             font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         .btn-back:hover {
-            color: #333;
+            color: #18392b;
             text-decoration: underline;
         }
         
@@ -184,7 +189,7 @@
             <button type="submit" class="btn-update">Update Booking</button>
         </form>
         
-        <a href="viewBookings_student.jsp" class="btn-back">Back to Bookings</a>
+        <a href="view-bookings-student.jsp" class="btn-back">Back to Bookings</a>
     </div>
 </body>
 </html>
