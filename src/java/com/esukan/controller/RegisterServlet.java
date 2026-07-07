@@ -19,12 +19,22 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // 1. Take data from register.jsp from
+        String idStr = request.getParameter("id");
         String fullName = request.getParameter("fullName");
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phoneNumber");
         String role = request.getParameter("role");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
+
+        int id = 0;
+        if (idStr != null && !idStr.trim().isEmpty()) {
+            try {
+                id = Integer.parseInt(idStr);
+            } catch (NumberFormatException e) {
+                id = 0; // Fallback to default
+            }
+        }
 
         // 2. Validation Process
         String errorMsg = null;
