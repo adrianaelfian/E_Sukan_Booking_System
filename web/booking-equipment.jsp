@@ -22,7 +22,8 @@
         }
         
         .container {
-            max-width: 520px;
+            max-width: 440px;
+            width: 100%;
             margin: 0 auto;
             background: #ffffff;
             padding: 40px 45px;
@@ -47,7 +48,7 @@
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         
         .form-group label {
@@ -81,12 +82,12 @@
         
         .btn-submit {
             width: 100%;
-            padding: 13px;
+            padding: 12px;
             background: #18392b;
             color: #ffffff;
             border: none;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             transition: background 0.3s;
@@ -102,7 +103,7 @@
         .btn-back {
             display: inline-block;
             margin-top: 15px;
-            color: #888;
+            color: #666;
             text-decoration: none;
             font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
