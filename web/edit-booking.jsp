@@ -138,7 +138,6 @@
 <body>
     <div class="container">
         <h1>Edit Booking</h1>
-        <div class="subtitle">Modify your existing booking details</div>
         
         <%
             String message = (String) request.getAttribute("message");
@@ -184,7 +183,7 @@
             <button type="submit" class="btn-update">Update Booking</button>
         </form>
         
-        <a href="view-bookings.jsp" class="btn-back">Back to Bookings</a>
+        <a href="viewBookings_student.jsp" class="btn-back">Back to Bookings</a>
     </div>
 </body>
 </html>
