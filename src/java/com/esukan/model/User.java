@@ -10,6 +10,7 @@ package com.esukan.model;
  * @author adriana
  */
 public class User {
+    private int id;
     private String fullName;
     private String email;
     private String phoneNumber;
@@ -20,7 +21,8 @@ public class User {
     public User() {}
 
     
-    public User(String fullName, String email, String phoneNumber, String role, String password) {
+    public User(int id, String fullName, String email, String phoneNumber, String role, String password) {
+        this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -29,6 +31,9 @@ public class User {
     }
 
     // Getter dan Setter 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
 
