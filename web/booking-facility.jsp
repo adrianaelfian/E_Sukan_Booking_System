@@ -133,7 +133,6 @@
 <body>
     <div class="container">
         <h1>Book Facility</h1>
-        <div class="subtitle">Fill in the details to book a sports facility</div>
         
         <%
             String message = (String) request.getAttribute("message");
