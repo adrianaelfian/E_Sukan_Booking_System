@@ -8,15 +8,15 @@ import java.util.List;
 public class BookingDAO {
     
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/esukan_db";
-        String username = "root";
-        String password = "";
+        String url = "jdbc:derby://localhost:1527/esukan";
+        String username = "app";
+        String password = "app";
         return DriverManager.getConnection(url, username, password);
     }
     
     // CREATE - Add booking
     public boolean addBooking(Booking booking) {
-        String sql = "INSERT INTO FacilityBooking (userID, facilityID, date, startTime, endTime, playerNumber, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO FACILITYBOOKING (userID, facilityID, date, startTime, endTime, playerNumber, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -40,22 +40,22 @@ public class BookingDAO {
     // READ - Get all bookings
     public List<Booking> getAllBookings() {
         List<Booking> bookings = new ArrayList<>();
-        String sql = "SELECT * FROM FacilityBooking ORDER BY bookingID DESC";
-        
+        String sql = "SELECT FB.BOOKINGID, U.FULLNAME, F.FACILITYNAME, FB.DATE, FB.STATUS " +
+                     "FROM FACILITYBOOKING FB " +
+                     "JOIN USERS U ON FB.USERID = U.ID " +
+                     "JOIN FACILITY F ON FB.FACILITYID = F.FACILITYID " +
+                     "ORDER BY FB.BOOKINGID DESC";       
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
             while (rs.next()) {
                 Booking booking = new Booking();
-                booking.setBookingId(rs.getInt("bookingID"));
-                booking.setUserId(rs.getInt("userID"));
-                booking.setFacilityId(rs.getInt("facilityID"));
-                booking.setBookingDate(rs.getString("date"));
-                booking.setStartTime(rs.getString("startTime"));
-                booking.setEndTime(rs.getString("endTime"));
-                booking.setPlayerNumber(rs.getInt("playerNumber"));
-                booking.setStatus(rs.getString("status"));
+                booking.setBookingId(rs.getInt("BOOKINGID"));
+                booking.setStudentName(rs.getString("FULLNAME"));
+                booking.setFacilityName(rs.getString("FACILITYNAME"));
+                booking.setBookingDate(rs.getString("DATE"));
+                booking.setStatus(rs.getString("STATUS"));
                 bookings.add(booking);
             }
             
@@ -69,8 +69,16 @@ public class BookingDAO {
     // READ - Get bookings by user
     public List<Booking> getBookingsByUser(int userId) {
         List<Booking> bookings = new ArrayList<>();
-        String sql = "SELECT * FROM FacilityBooking WHERE userID = ? ORDER BY bookingID DESC";
-        
+        String sql =  "SELECT FB.BOOKINGID, " +
+                      "F.FACILITYNAME, " +
+                      "FB.DATE, " +
+                      "FB.STARTTIME, " +
+                      "FB.ENDTIME, " +
+                      "FB.STATUS " +
+                      "FROM FACILITYBOOKING FB " +
+                      "JOIN FACILITY F ON FB.FACILITYID = F.FACILITYID " +
+                      "WHERE FB.USERID = ? " +
+                      "ORDER BY FB.BOOKINGID DESC";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
@@ -79,14 +87,13 @@ public class BookingDAO {
             
             while (rs.next()) {
                 Booking booking = new Booking();
-                booking.setBookingId(rs.getInt("bookingID"));
-                booking.setUserId(rs.getInt("userID"));
-                booking.setFacilityId(rs.getInt("facilityID"));
-                booking.setBookingDate(rs.getString("date"));
-                booking.setStartTime(rs.getString("startTime"));
-                booking.setEndTime(rs.getString("endTime"));
-                booking.setPlayerNumber(rs.getInt("playerNumber"));
-                booking.setStatus(rs.getString("status"));
+                booking.setBookingId(rs.getInt("BOOKINGID"));
+                booking.setFacilityName(rs.getString("FACILITYNAME"));
+                booking.setBookingDate(rs.getString("DATE"));
+                booking.setStartTime(rs.getString("STARTTIME"));
+                booking.setEndTime(rs.getString("ENDTIME"));
+                booking.setStatus(rs.getString("STATUS"));
+
                 bookings.add(booking);
             }
             
@@ -99,7 +106,7 @@ public class BookingDAO {
     
     // UPDATE - Update booking status
     public boolean updateBookingStatus(int bookingId, String status) {
-        String sql = "UPDATE FacilityBooking SET status = ? WHERE bookingID = ?";
+        String sql = "UPDATE FACILITYBOOKING SET status = ? WHERE bookingID = ?";
         
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -117,7 +124,7 @@ public class BookingDAO {
     
     // DELETE - Cancel booking
     public boolean deleteBooking(int bookingId) {
-        String sql = "DELETE FROM FacilityBooking WHERE bookingID = ?";
+        String sql = "DELETE FROM FACILITYBOOKING WHERE bookingID = ?";
         
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -129,5 +136,23 @@ public class BookingDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    // DASHBOARD - Total Bookings
+    public int getTotalBookings() {
+        
+        int total=0;
+        String sql="SELECT COUNT(*) FROM FACILITYBOOKING";
+        
+        try (Connection conn = getConnection();
+                PreparedStatement pstmt=conn.prepareStatement(sql);
+                ResultSet rs= pstmt.executeQuery()) {
+            
+            if (rs.next()) {
+                    total = rs.getInt(1);
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+        }
+        return total;
     }
 }

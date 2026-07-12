@@ -9,6 +9,8 @@ public class Booking {
     private String endTime;
     private int playerNumber;
     private String status;
+    private String studentName;
+    private String facilityName;
     
     public Booking() {
     }
@@ -87,5 +89,21 @@ public class Booking {
     
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public String getStudentName(){
+        return studentName;
+    }
+    
+    public void setStudentName(String studentName){
+        this.studentName = studentName;
+    }
+    
+    public String getFacilityName(){
+        return facilityName;
+    }
+    
+    public void setFacilityName(String facilityName){
+        this.facilityName = facilityName;
     }
 }
