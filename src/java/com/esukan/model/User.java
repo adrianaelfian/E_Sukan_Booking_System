@@ -30,6 +30,10 @@ public class User {
         this.password = password;
     }
 
+    public User(String fullName, String email, String phoneNumber, String role, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     // Getter dan Setter 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
