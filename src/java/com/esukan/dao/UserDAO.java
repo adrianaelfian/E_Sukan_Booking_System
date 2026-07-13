@@ -1,10 +1,11 @@
+// model
 package com.esukan.dao;
 
 import com.esukan.model.User;
 import java.sql.*;
 
 public class UserDAO {
-    
+
     private Connection getConnection() throws SQLException {
         String url = "jdbc:derby://localhost:1527/esukan";
         String username = "app";
@@ -13,6 +14,7 @@ public class UserDAO {
         return DriverManager.getConnection(url, username, password);
     }
 
+    //register: save user into database
     public boolean registerUser(User user) {
         String sql = "INSERT INTO USERS (FULLNAME, EMAIL, PHONENUMBER, PASSWORD, ROLE) VALUES (?,?,?,?,?)";
         
@@ -33,6 +35,7 @@ public class UserDAO {
         return false;
     }
 
+    // login: validate credentials
     public User validateUser(String email, String password, String role) {
         
         User user = null;
