@@ -1,3 +1,5 @@
+// MVC COMPONENT: MODEL (Data Access Layer)
+// Purpose: Database operations for equipment rentals (CRUD)
 package com.esukan.dao;
 
 import com.esukan.model.EquipmentRental;
