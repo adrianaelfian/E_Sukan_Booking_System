@@ -1,3 +1,5 @@
+     //MVC COMPONENT: VIEW
+     //Purpose: Display facility booking form and show success/error message
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -139,7 +141,8 @@
     <div class="container">
         <h1>Book Facility</h1>
         <div class="subtitle">Fill in the details to book a sports facility</div>
-        
+
+        <%-- Display message from CONTROLLER --%>
         <%
             String message = (String) request.getAttribute("message");
             if (message != null) {
@@ -151,7 +154,8 @@
         %>
             <div class="message <%= msgClass %>"><%= message %></div>
         <% } %>
-        
+
+        <%-- Form sends data to CONTROLLER (BookingServlet) --%>
         <form action="BookingServlet" method="post">
             <input type="hidden" name="action" value="bookFacility">
             
