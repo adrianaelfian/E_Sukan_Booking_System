@@ -1,3 +1,4 @@
+//View
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if (session != null) {
@@ -50,6 +51,7 @@
     </head>
     <body>
 
+        //View: Shown to user 
         <div class="logout-box">
             <h2>Logging out...</h2>
             <p>Your session ended safely. You are now redirected to login page.</p>

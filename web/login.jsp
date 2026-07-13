@@ -1,3 +1,5 @@
+// View (MVC)
+//
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -166,7 +168,7 @@
                 text-decoration: underline;
             }
 
-            /* Alert Messages Styling */
+            
             .alert {
                 padding: 12px;
                 border-radius: 6px;
@@ -207,7 +209,8 @@
                     <h2>Account Login</h2>
                     <p>Please enter your credentials to access the system</p>
                 </div>
-                
+
+                // error alert
                 <% 
                     String error = (String) request.getAttribute("errorMessage");
                     if (error != null) { 
@@ -215,6 +218,7 @@
                     <div class="alert alert-danger"><%= error %></div>
                 <% } %>
 
+                // success alert (from coplete registration & log out)
                 <% 
                     String status = request.getParameter("status");
                     if ("success".equals(status)) { 

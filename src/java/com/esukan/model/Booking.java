@@ -1,3 +1,5 @@
+// MVC COMPONENT: MODEL
+// Purpose: Represents booking data and business logic
 package com.esukan.model;
 
 public class Booking {
@@ -41,7 +43,8 @@ public class Booking {
         this.returnDate = returnDate;
         this.equipmentStatus =equipmentStatus;
     }
-    
+
+//  GETTERS AND SETTERS 
     public int getBookingId() {
         return bookingId;
     }
