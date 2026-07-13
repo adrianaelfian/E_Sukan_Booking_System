@@ -1,3 +1,4 @@
+//Controller
 package com.esukan.controller;
 
 import com.esukan.dao.UserDAO;
@@ -15,25 +16,29 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Controller: extract input form parameters passed from login.jsp
+        //Retrieve parameter from login.jsp
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role"); 
 
+        //query database layer(to confirm match)
         UserDAO dao = new UserDAO();
         User user = dao.validateUser(email, password, role);
 
+        //authentication success
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("role", role);
 
+            // route to correct layout based on role
             if ("MANAGER".equalsIgnoreCase(role)) {
                 response.sendRedirect("ManagerDashboardServlet");
             } else {
                 response.sendRedirect("StudentDashboardServlet");
             }
         } else {
+            //authentication failed
             request.setAttribute("errorMessage", "Invalid Email or Password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
