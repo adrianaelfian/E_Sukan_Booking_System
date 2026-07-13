@@ -1,3 +1,4 @@
+//Controller
 package com.esukan.controller;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate(); 
         }
-        
+
+        // clear browser navigation history & direct back to sign in
         response.sendRedirect("login.jsp?status=loggedout");
     }
     
