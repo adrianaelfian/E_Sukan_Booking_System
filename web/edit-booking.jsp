@@ -1,3 +1,5 @@
+//MVC COMPONENT: VIEW
+//Purpose: Display edit booking form with existing data
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -144,7 +146,8 @@
     <div class="container">
         <h1>Edit Booking</h1>
         <div class="subtitle">Modify your existing booking details</div>
-        
+
+        <%-- Display message from CONTROLLER --%>
         <%
             String message = (String) request.getAttribute("message");
             if (message != null) {
