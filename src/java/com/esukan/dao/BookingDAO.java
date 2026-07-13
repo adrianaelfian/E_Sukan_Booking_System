@@ -1,3 +1,5 @@
+// MVC COMPONENT: MODEL (Data Access Layer)
+// Purpose: Database operations for bookings (CRUD)
 package com.esukan.dao;
 
 import com.esukan.model.Booking;
