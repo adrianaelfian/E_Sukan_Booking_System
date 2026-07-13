@@ -31,7 +31,11 @@ public class User {
     }
 
     public User(String fullName, String email, String phoneNumber, String role, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.fullName = fullName;
+        this.email =email;
+        this.phoneNumber =phoneNumber;
+        this.role = role;
+        this.password = password;
     }
 
     // Getter dan Setter 

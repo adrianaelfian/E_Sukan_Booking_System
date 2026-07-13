@@ -41,11 +41,11 @@ public class RegisterServlet extends HttpServlet {
 
         // Check A: Make sure the password length is not short than 6
         if (password.length() < 6) {
-            errorMsg = "Kata laluan mestilah sekurang-kurangnya 6 aksara!";
+            errorMsg = "The length of the password atleast 6 characters!";
         } 
         // Check B: Make sure Password and Confirm Password is same
         else if (!password.equals(confirmPassword)) {
-            errorMsg = "Pengesahan kata laluan tidak sepadan!";
+            errorMsg = "Password confirmation does not match!";
         }
 
         // 3. IF VALIDATION FAILED

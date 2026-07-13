@@ -30,15 +30,21 @@ nav a{
     font-weight:bold;
 }
 
-.logout-btn{
+nav a.logout-btn{
     background:#dc3545;
     color:white;
     border:none;
     padding:10px 20px;
+    text-decoration: none;
     border-radius:6px;
+    display:inline-block;
+    font-weight: bold;
     cursor:pointer;
 }
 
+nav a.logout-btn:hover{
+    background: #c82333
+}
 .container{
     padding:40px;
 }

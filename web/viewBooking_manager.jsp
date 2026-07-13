@@ -286,7 +286,7 @@
             </tbody>
         </table>
         
-        <a href="dashboard-manager.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="ManagerDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

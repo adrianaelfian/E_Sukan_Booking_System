@@ -177,7 +177,7 @@
                             <tr>
                                 <td>${booking.bookingId}</td>
                                 <td>${booking.facilityName}</td>
-                                <td>${booking.bookingDate}</td>
+                                <td>${booking.date}</td>
                                 <td>${booking.startTime} - ${booking.endTime}</td>
                                 <td>${booking.playerNumber}</td>
                                 <td><span class="status-${booking.status.toLowerCase()}">${booking.status}</span></td>

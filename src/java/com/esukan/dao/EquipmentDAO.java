@@ -13,7 +13,7 @@ import java.sql.*;
 
 public class EquipmentDAO {
         private Connection getConnection() throws SQLException{
-        return DriverManager.getConnection("jdbc:derby://localhost:1527/esukan","app","app");
+        return DriverManager.getConnection("jdbc:derby://localhost:1527/ESukanDB","app","app");
     }
     
     public int getTotalEquipment(){

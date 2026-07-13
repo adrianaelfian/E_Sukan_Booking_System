@@ -8,6 +8,19 @@
 <%@page import="com.esukan.model.Booking"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%
+    // Semak jika sesi masih wujud atau pengguna sudah login
+    if (session == null || session.getAttribute("user") == null) {
+        response.sendRedirect("login.jsp");
+        return; // Hentikan pemprosesan JSP supaya kandungan dashboard tidak dipaparkan
+    }
+%>
+
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+    response.setDateHeader("Expires", 0); // Proxies
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +42,7 @@
 
         <nav>
             <a href="viewBooking_manager.jsp">Booking Management</a>            
-            <button class="logout-btn">Logout</button>
+            <a href="LogoutServlet"class="logout-btn">Logout</a>
         </nav>
 
     </header>

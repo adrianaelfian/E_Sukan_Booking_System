@@ -70,7 +70,8 @@ public class StudentDashboardServlet extends HttpServlet {
 
         // Open dashboard
         request.setAttribute("bookingList", bookingList);
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student-dashboard.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**

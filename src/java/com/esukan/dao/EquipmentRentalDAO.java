@@ -8,7 +8,7 @@ import java.util.List;
 public class EquipmentRentalDAO {
     
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/esukan_db";
+        String url = "jdbc:mysql://localhost:3306/ESukanDB";
         String username = "root";
         String password = ""; // Change to your MySQL password
         return DriverManager.getConnection(url, username, password);

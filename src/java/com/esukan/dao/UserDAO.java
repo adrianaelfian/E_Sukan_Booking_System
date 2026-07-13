@@ -6,7 +6,7 @@ import java.sql.*;
 public class UserDAO {
     
     private Connection getConnection() throws SQLException {
-        String url = "jdbc:derby://localhost:1527/esukan";
+        String url = "jdbc:derby://localhost:1527/ESukanDB";
         String username = "app";
         String password = "app";
 
@@ -14,7 +14,7 @@ public class UserDAO {
     }
 
     public boolean registerUser(User user) {
-        String sql = "INSERT INTO USERS (FULLNAME, EMAIL, PHONENUMBER, PASSWORD, ROLE) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO USERS (FULL_NAME, EMAIL, PHONE_NUMBER, PASSWORD, ROLE) VALUES (?,?,?,?,?)";
         
         try (Connection conn = getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -52,9 +52,9 @@ public class UserDAO {
                     user = new User();
                     
                     user.setId(rs.getInt("ID"));
-                    user.setFullName(rs.getString("FULLNAME"));
+                    user.setFullName(rs.getString("FULL_NAME"));
                     user.setEmail(rs.getString("EMAIL"));
-                    user.setPhoneNumber(rs.getString("PHONENUMBER"));
+                    user.setPhoneNumber(rs.getString("PHONE_NUMBER"));
                     user.setPassword(rs.getString("PASSWORD"));
                     user.setRole(rs.getString("ROLE"));
                     

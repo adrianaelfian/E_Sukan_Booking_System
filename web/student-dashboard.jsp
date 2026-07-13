@@ -45,7 +45,7 @@
         <h1>E-SUKAN DASHBOARD</h1>
 
         <nav>
-            <a href="logout.html" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
+            <a href="logout.jsp" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
         </nav>
 
     </header>
@@ -54,17 +54,17 @@
 
 <div class="quick-actions">
 
-    <a href="booking-facility.html" class="action-card">
+    <a href="booking-facility.jsp" class="action-card">
         <h3>Book a Sport Facility</h3>
         <p>Reserve badminton, futsal or basketball courts.</p>
     </a>
 
-    <a href="booking-equipment.html" class="action-card">
+    <a href="booking-equipment.jsp" class="action-card">
         <h3>Rent Sports Equipment</h3>
         <p>Borrow sports equipment for training and games.</p>
     </a>
 
-    <a href="viewBookings_student.html" class="action-card">
+    <a href="viewBookings_student.jsp" class="action-card">
         <h3>View My Bookings</h3>
         <p>Check all current and previous bookings.</p>
     </a>
@@ -107,7 +107,7 @@
                         </td>
                         <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
                             <!-- Jika masih Pending, student boleh klik Edit & Cancel -->
-                            <a href="booking-facility.html" style="background-color: #ffc107; color: #333; text-decoration: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; display: inline-block;">Edit</a>
+                            <a href="booking-facility.jsp" style="background-color: #ffc107; color: #333; text-decoration: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; display: inline-block;">Edit</a>
                             <button onclick="alert('Booking for Futsal Court 1 has been canceled successfully!')" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">Cancel</button>
                         </td>
                     </tr>
@@ -166,7 +166,7 @@
                     %>
                     <tr>
                         <td><%= booking.getFacilityName() %></td>
-                        <td><%= booking.getBookingDate() %></td>
+                        <td><%= booking.getDate() %></td>
                         <td><%= booking.getStatus() %></td> 
                     </tr>
                     <%

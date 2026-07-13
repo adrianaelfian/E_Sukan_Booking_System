@@ -1,3 +1,9 @@
+<%
+    if (session == null || session.getAttribute("user") == null) {
+        response.sendRedirect("login.jsp");
+        return; 
+    }
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -168,8 +174,8 @@
             </div>
             
             <div class="form-group">
-                <label for="bookingDate">Booking Date</label>
-                <input type="date" name="bookingDate" id="bookingDate" required>
+                <label for="date">Booking Date</label>
+                <input type="date" name="date" id="date" required>
             </div>
             
             <div class="form-group">
