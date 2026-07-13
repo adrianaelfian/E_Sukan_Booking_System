@@ -1,3 +1,6 @@
+//MVC COMPONENT: VIEW
+//Purpose: Display student's own bookings retrieved from CONTROLLER
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -152,7 +155,8 @@
         
         <h1>My Bookings</h1>
         <div class="subtitle">View your facility and equipment bookings</div>
-        
+
+        <%-- Display data from CONTROLLER using JSTL --%>
         <div class="section-title">Facility Bookings</div>
         <table>
             <thead>
