@@ -207,7 +207,8 @@
                     <h2>Account Login</h2>
                     <p>Please enter your credentials to access the system</p>
                 </div>
-                
+
+                //View: show error data forwarded from controller
                 <% 
                     String error = (String) request.getAttribute("errorMessage");
                     if (error != null) { 
