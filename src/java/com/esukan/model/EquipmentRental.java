@@ -1,3 +1,5 @@
+// MVC COMPONENT: MODEL
+// Purpose: Represents equipment rental data
 package com.esukan.model;
 
 public class EquipmentRental {
@@ -22,6 +24,7 @@ public class EquipmentRental {
         this.status = status;
     }
     
+    //  GETTERS AND SETTERS 
     public int getRentalId() { return rentalId; }
     public void setRentalId(int rentalId) { this.rentalId = rentalId; }
     
