@@ -14,7 +14,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
+        //Controller: extract input form parameters passed from login.jsp
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role"); 
