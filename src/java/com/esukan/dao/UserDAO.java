@@ -1,24 +1,20 @@
 package com.esukan.dao;
 
 import com.esukan.model.User;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class UserDAO {
     
-    private final String dbURL = "jdbc:mysql://localhost:3306/esukan_db";
-    private final String dbUser = "root";
-    private final String dbPassword = "";
+    private Connection getConnection() throws SQLException {
+        String url = "jdbc:derby://localhost:1527/esukan";
+        String username = "app";
+        String password = "app";
 
-    private Connection getConnection() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(dbURL, dbUser, dbPassword);
+        return DriverManager.getConnection(url, username, password);
     }
 
     public boolean registerUser(User user) {
-        String sql = "INSERT INTO users (full_name, email, phone_number, password, role) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USERS (FULLNAME, EMAIL, PHONENUMBER, PASSWORD, ROLE) VALUES (?,?,?,?,?)";
         
         try (Connection conn = getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -29,17 +25,19 @@ public class UserDAO {
             ps.setString(4, user.getPassword()); 
             ps.setString(5, user.getRole());     
             
-            int rowsAffected = ps.executeUpdate();
-            return rowsAffected > 0;
+            return ps.executeUpdate() > 0;
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
-    public String validateUser(String email, String password, String role) {
-        String sql = "SELECT full_name FROM users WHERE email = ? AND password = ? AND role = ?";
+    public User validateUser(String email, String password, String role) {
+        
+        User user = null;
+        
+        String sql = "SELECT * FROM USERS WHERE EMAIL=? AND PASSWORD=? AND ROLE=?";
         
         try (Connection conn = getConnection(); 
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -48,14 +46,23 @@ public class UserDAO {
             ps.setString(2, password);
             ps.setString(3, role);
             
-            try (ResultSet rs = ps.executeQuery()) {
+            ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    return rs.getString("full_name"); 
+                    
+                    user = new User();
+                    
+                    user.setId(rs.getInt("ID"));
+                    user.setFullName(rs.getString("FULLNAME"));
+                    user.setEmail(rs.getString("EMAIL"));
+                    user.setPhoneNumber(rs.getString("PHONENUMBER"));
+                    user.setPassword(rs.getString("PASSWORD"));
+                    user.setRole(rs.getString("ROLE"));
+                    
                 }
-            }
-        } catch (Exception e) {
+            
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return user;
     }
 }

@@ -2,6 +2,7 @@ package com.esukan.controller;
 
 import com.esukan.dao.BookingDAO;
 import com.esukan.model.Booking;
+import com.esukan.model.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -53,20 +54,21 @@ public class BookingServlet extends HttpServlet {
         } else if ("updateBooking".equals(action)) {
             updateBooking(request, response);
         } else {
-            response.sendRedirect("index.html");
+            response.sendRedirect("StudentDashboardServlet");
         }
     }
     
     private void bookFacility(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+        HttpSession session = request.getSession(false);
         
-        if (userId == null) {
+        if (session == null || session.getAttribute("user")==null){
             response.sendRedirect("login.jsp");
             return;
         }
+        
+        User user = (User) session.getAttribute("user");
         
         int facilityId = Integer.parseInt(request.getParameter("facilityId"));
         String bookingDate = request.getParameter("bookingDate");
@@ -75,7 +77,7 @@ public class BookingServlet extends HttpServlet {
         int playerNumber = Integer.parseInt(request.getParameter("numPlayers"));
         
         Booking booking = new Booking();
-        booking.setUserId(userId);
+        booking.setUserId(user.getId());
         booking.setFacilityId(facilityId);
         booking.setBookingDate(bookingDate);
         booking.setStartTime(startTime);
@@ -85,43 +87,42 @@ public class BookingServlet extends HttpServlet {
         boolean success = bookingDAO.addBooking(booking);
         
         if (success) {
-            request.setAttribute("message", "Booking submitted successfully. Waiting for approval.");
-            request.setAttribute("messageType", "success");
+             response.sendRedirect("BookingServlet?action=view");
         } else {
             request.setAttribute("message", "Booking failed. Please try again.");
             request.setAttribute("messageType", "error");
+            request.getRequestDispatcher("booking-facility.jsp").forward(request, response);
         }
-        
-        request.getRequestDispatcher("booking-facility.jsp").forward(request, response);
     }
     
     private void bookEquipment(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("booking-equipment.jsp");
+        response.sendRedirect("StudentDashboardServlet");
     }
     
     private void viewBookings(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
+        HttpSession session = request.getSession(false);
         
-        if (userId == null) {
+        if (session == null || session.getAttribute("user")==null){
             response.sendRedirect("login.jsp");
             return;
         }
         
-        List<Booking> bookings = bookingDAO.getBookingsByUser(userId);
+        User user = (User) session.getAttribute("user");
+
+        List<Booking> bookings = bookingDAO.getBookingsByUser(user.getId());
         request.setAttribute("facilityBookings", bookings);
-        request.getRequestDispatcher("view-bookings.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("viewBookings_student.jsp")
+               .forward(request,response);    }
     
     private void approveBooking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         int bookingId = Integer.parseInt(request.getParameter("bookingId"));
         bookingDAO.updateBookingStatus(bookingId, "Approved");
-        response.sendRedirect("view-bookings.jsp");
+        response.sendRedirect("ManagerDashboardServlet");
     }
     
     private void rejectBooking(HttpServletRequest request, HttpServletResponse response)
@@ -129,7 +130,7 @@ public class BookingServlet extends HttpServlet {
         
         int bookingId = Integer.parseInt(request.getParameter("bookingId"));
         bookingDAO.updateBookingStatus(bookingId, "Rejected");
-        response.sendRedirect("view-bookings.jsp");
+        response.sendRedirect("ManagerDashboardServlet");
     }
     
     private void cancelBooking(HttpServletRequest request, HttpServletResponse response)
@@ -137,11 +138,11 @@ public class BookingServlet extends HttpServlet {
         
         int bookingId = Integer.parseInt(request.getParameter("bookingId"));
         bookingDAO.deleteBooking(bookingId);
-        response.sendRedirect("view-bookings.jsp");
+        response.sendRedirect("StudentDashboardServlet");
     }
     
     private void updateBooking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("view-bookings.jsp");
+        response.sendRedirect("StudentDashboardServlet");
     }
 }

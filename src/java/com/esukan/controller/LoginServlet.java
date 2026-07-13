@@ -1,17 +1,15 @@
 package com.esukan.controller;
 
 import com.esukan.dao.UserDAO;
+import com.esukan.model.User;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -21,21 +19,21 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role"); 
 
-        UserDAO userDAO = new UserDAO();
-        String userFullName = userDAO.validateUser(email, password, role);
+        UserDAO dao = new UserDAO();
+        User user = dao.validateUser(email, password, role);
 
-        if (userFullName != null) {
+        if (user != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("user", userFullName);
+            session.setAttribute("user", user);
             session.setAttribute("role", role);
 
-            if ("MANAGER".equals(role)) {
-                response.sendRedirect("manager-dashboard.html");
+            if ("MANAGER".equalsIgnoreCase(role)) {
+                response.sendRedirect("ManagerDashboardServlet");
             } else {
-                response.sendRedirect("student-dashboard.html");
+                response.sendRedirect("StudentDashboardServlet");
             }
         } else {
-            request.setAttribute("errorMessage", "Alamat e-mel, kata laluan atau peranan salah!");
+            request.setAttribute("errorMessage", "Invalid Email or Password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

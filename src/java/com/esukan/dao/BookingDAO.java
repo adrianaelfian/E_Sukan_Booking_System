@@ -72,12 +72,10 @@ public class BookingDAO {
         String sql =  "SELECT FB.BOOKINGID, " +
                       "F.FACILITYNAME, " +
                       "FB.DATE, " +
-                      "FB.STARTTIME, " +
-                      "FB.ENDTIME, " +
                       "FB.STATUS " +
                       "FROM FACILITYBOOKING FB " +
                       "JOIN FACILITY F ON FB.FACILITYID = F.FACILITYID " +
-                      "WHERE FB.USERID = ? " +
+                      "WHERE FB.USERID=? " +
                       "ORDER BY FB.BOOKINGID DESC";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -90,8 +88,6 @@ public class BookingDAO {
                 booking.setBookingId(rs.getInt("BOOKINGID"));
                 booking.setFacilityName(rs.getString("FACILITYNAME"));
                 booking.setBookingDate(rs.getString("DATE"));
-                booking.setStartTime(rs.getString("STARTTIME"));
-                booking.setEndTime(rs.getString("ENDTIME"));
                 booking.setStatus(rs.getString("STATUS"));
 
                 bookings.add(booking);

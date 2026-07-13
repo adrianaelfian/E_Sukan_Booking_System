@@ -215,7 +215,7 @@
                     <button type="submit" class="btn">Register</button>
                 </form>
 
-                <a href="login.html" class="login-link">Already have an account? Login here</a>
+                <a href="login.jsp" class="login-link">Already have an account? Login here</a>
             </div>
         </div>
         

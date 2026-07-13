@@ -106,4 +106,5 @@ public class Booking {
     public void setFacilityName(String facilityName){
         this.facilityName = facilityName;
     }
+
 }
