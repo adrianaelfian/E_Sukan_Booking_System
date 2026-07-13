@@ -28,7 +28,7 @@
         <h1>E-SUKAN MANAGER DASHBOARD</h1>
 
         <nav>
-            <a href="viewBooking_manager.html">Booking Management</a>            
+            <a href="viewBooking_manager.jsp">Booking Management</a>            
             <button class="logout-btn">Logout</button>
         </nav>
 

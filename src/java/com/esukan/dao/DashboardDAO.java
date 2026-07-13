@@ -15,9 +15,9 @@ import java.sql.SQLException;
 
 public class DashboardDAO {
      private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/esukan_db";
-        String username = "root";
-        String password = "";
+        String url = "jdbc:derby://localhost:1527/esukan";
+        String username = "app";
+        String password = "app";
 
         return DriverManager.getConnection(url, username, password);
     }
