@@ -1,5 +1,5 @@
-// View (MVC)
-//
+<%--View (MVC)--%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -210,7 +210,7 @@
                     <p>Please enter your credentials to access the system</p>
                 </div>
 
-                // error alert
+                <%--error alert--%>
                 <% 
                     String error = (String) request.getAttribute("errorMessage");
                     if (error != null) { 
@@ -218,7 +218,7 @@
                     <div class="alert alert-danger"><%= error %></div>
                 <% } %>
 
-                // success alert (from coplete registration & log out)
+                <%--success alert (from coplete registration & log out)--%>
                 <% 
                     String status = request.getParameter("status");
                     if ("success".equals(status)) { 

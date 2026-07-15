@@ -198,7 +198,7 @@
             <button type="submit" class="btn-submit">Submit Booking</button>
         </form>
         
-        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="StudentDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

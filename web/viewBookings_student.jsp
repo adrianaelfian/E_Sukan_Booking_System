@@ -1,5 +1,5 @@
-//MVC COMPONENT: VIEW
-//Purpose: Display student's own bookings retrieved from CONTROLLER
+<%--MVC COMPONENT: VIEW
+Purpose: Display student's own bookings retrieved from CONTROLLER--%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -147,6 +147,32 @@
             background: #e8f5e9;
             color: #2e7d32;
         }
+        .btn-cancel {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-decoration: none;
+            border: 1px solid #f5c6cb;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e6ea;
+        }
+        .btn-edit {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-decoration: none;
+            border: 1px solid #bbdefb;
+            margin-left: 5px;
+        }
+        .btn-edit:hover {
+            background: #d0d9ff;
+        }
     </style>
 </head>
 <body>
@@ -167,13 +193,14 @@
                     <th>Time</th>
                     <th>Players</th>
                     <th>Status</th>
+                    <th>Action</th> <!-- Added column -->
                 </tr>
             </thead>
             <tbody>
                 <c:choose>
                     <c:when test="${empty facilityBookings}">
                         <tr>
-                            <td colspan="6" class="empty-message">No facility bookings found.</td>
+                            <td colspan="7" class="empty-message">No facility bookings found.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>
@@ -185,6 +212,12 @@
                                 <td>${booking.startTime} - ${booking.endTime}</td>
                                 <td>${booking.playerNumber}</td>
                                 <td><span class="status-${booking.status.toLowerCase()}">${booking.status}</span></td>
+                                <td>
+                                    <c:if test="${booking.status == 'Pending'}">
+                                        <a href="BookingServlet?action=cancel&type=booking&bookingId=${booking.bookingId}" class ="btn-cancel">Cancel</a>
+                                        <a href="BookingServlet?action=edit&bookingId=${booking.bookingId}" class="btn-edit">Edit</a>
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:otherwise>
@@ -198,10 +231,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Equipment</th>
-                    <th>Date</th>
+                    <th>Rental Date</th>
                     <th>Quantity</th>
-                    <th>Duration</th>
+                    <th>Return Date</th>
                     <th>Status</th>
+                    <th>Action</th> <!-- Added column -->
                 </tr>
             </thead>
             <tbody>
@@ -218,8 +252,16 @@
                                 <td>${rental.equipmentName}</td>
                                 <td>${rental.rentalDate}</td>
                                 <td>${rental.quantity}</td>
-                                <td>${rental.duration} hours</td>
+                                <td>${rental.returnDate}</td>
                                 <td><span class="status-${rental.status.toLowerCase()}">${rental.status}</span></td>
+                                <td>
+                                    <c:if test="${rental.status == 'Pending'}">
+                                        <!-- Pautan Cancel -->
+                                        <a href="BookingServlet?action=cancel&type=equipment&rentalId=${rental.rentalId}"  class="btn-cancel">Cancel</a>
+                                           <!-- Pautan Edit -->
+                                        <a href="BookingServlet?action=edit&rentalId=${rental.rentalId}" class="btn-edit">Edit</a>
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                     </c:otherwise>
@@ -227,7 +269,7 @@
             </tbody>
         </table>
         
-        <a href="student-dashboard.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="StudentDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

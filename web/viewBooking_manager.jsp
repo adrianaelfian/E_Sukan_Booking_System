@@ -1,5 +1,5 @@
-//MVC COMPONENT: VIEW
-//Purpose: Display all bookings for manager with approve/reject buttons
+<%--MVC COMPONENT: VIEW
+Purpose: Display all bookings for manager with approve/reject buttons--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -64,6 +64,8 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
+            table-layout: fixed;
+            margin-bottom: 30px;
         }
         
         thead {
@@ -75,11 +77,13 @@
             padding: 12px 15px;
             text-align: left;
             font-weight: 600;
+            word-wrap: break-word;
         }
         
         td {
             padding: 10px 15px;
             border-bottom: 1px solid #eee;
+            word-wrap: break-word;
         }
         
         tbody tr:hover {
@@ -117,14 +121,17 @@
         }
         
         .btn-action {
-            padding: 6px 12px;
+            padding: 5px 8px;
             border: none;
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 12px;
             margin-right: 5px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
         }
         
         .btn-approve {
@@ -181,6 +188,14 @@
             font-size: 12px;
             font-style: italic;
         }
+      h:nth-child(1) { width: 5%; }  /* ID */
+th:nth-child(2) { width: 15%; } /* Name */
+th:nth-child(3) { width: 15%; } /* Facility/Equip */
+th:nth-child(4) { width: 12%; } /* Date */
+th:nth-child(5) { width: 15%; } /* Time/Return */
+th:nth-child(6) { width: 10%; } /* Qty/Player */
+th:nth-child(7) { width: 10%; } /* Status */
+th:nth-child(8) { width: 18%; } /* Action */
     </style>
 </head>
 <body>
@@ -196,7 +211,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Student</th>
+                    <th>Student Name</th>
                     <th>Facility</th>
                     <th>Date</th>
                     <th>Time</th>
@@ -218,7 +233,7 @@
                                 <td>${booking.bookingId}</td>
                                 <td>${booking.studentName}</td>
                                 <td>${booking.facilityName}</td>
-                                <td>${booking.bookingDate}</td>
+                                <td>${booking.date}</td>
                                 <td>${booking.startTime} - ${booking.endTime}</td>
                                 <td>${booking.playerNumber}</td>
                                 <td><span class="status-${booking.status.toLowerCase()}">${booking.status}</span></td>
@@ -241,53 +256,53 @@
         </table>
         
         <div class="section-title">Equipment Rentals</div>
-        <table>
-            <thead>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Equipment Name</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:choose>
+            <c:when test="${empty equipmentRentals}">
                 <tr>
-                    <th>ID</th>
-                    <th>Student</th>
-                    <th>Equipment</th>
-                    <th>Date</th>
-                    <th>Quantity</th>
-                    <th>Duration</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <td colspan="7" class="empty-message">No equipment rental requests found.</td>
                 </tr>
-            </thead>
-            <tbody>
-                <c:choose>
-                    <c:when test="${empty equipmentRentals}">
-                        <tr>
-                            <td colspan="8" class="empty-message">No equipment rental requests found.</td>
-                        </tr>
-                    </c:when>
-                    <c:otherwise>
-                        <c:forEach var="rental" items="${equipmentRentals}">
-                            <tr>
-                                <td>${rental.rentalId}</td>
-                                <td>${rental.studentName}</td>
-                                <td>${rental.equipmentName}</td>
-                                <td>${rental.rentalDate}</td>
-                                <td>${rental.quantity}</td>
-                                <td>${rental.duration} hours</td>
-                                <td><span class="status-${rental.status.toLowerCase()}">${rental.status}</span></td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${rental.status == 'Pending'}">
-                                            <a href="BookingServlet?action=approveRental&rentalId=${rental.rentalId}" class="btn-action btn-approve" onclick="return confirm('Approve this rental?')">Approve</a>
-                                            <a href="BookingServlet?action=rejectRental&rentalId=${rental.rentalId}" class="btn-action btn-reject" onclick="return confirm('Reject this rental?')">Reject</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="processed-text">Processed</span>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </c:otherwise>
-                </c:choose>
-            </tbody>
-        </table>
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="rental" items="${equipmentRentals}">
+                    <tr>
+                        <td>${rental.rentalId}</td>
+                        <td>${rental.studentName}</td>
+                        <td>${rental.equipmentName}</td>
+                        <td>${rental.rentalDate}</td>
+                        <td>${rental.returnDate}</td>
+                        <td>${rental.quantity}</td>
+                        <td><span class="status-${rental.status.toLowerCase()}">${rental.status}</span></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${rental.status == 'Pending'}">
+                                    <a href="BookingServlet?action=approve&rentalId=${rental.rentalId}" class="btn-action btn-approve" onclick="return confirm('Approve this rental?')">Approve</a>
+                                    <a href="BookingServlet?action=reject&rentalId=${rental.rentalId}" class="btn-action btn-reject" onclick="return confirm('Reject this rental?')">Reject</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="processed-text">Processed</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </tbody>
+</table>
         
         <a href="ManagerDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>

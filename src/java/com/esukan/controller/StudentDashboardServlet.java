@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +7,9 @@
 package com.esukan.controller;
 
 import com.esukan.dao.BookingDAO;
+import com.esukan.dao.EquipmentRentalDAO;
 import com.esukan.model.Booking;
+import com.esukan.model.EquipmentRental;
 import com.esukan.model.User;
 import java.io.IOException;
 import java.util.List;
@@ -62,14 +65,17 @@ public class StudentDashboardServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         
         BookingDAO bookingDAO = new BookingDAO();
+        EquipmentRentalDAO rentalDAO = new EquipmentRentalDAO();
 
         List<Booking> bookingList = bookingDAO.getBookingsByUser(user.getId());
+        List<EquipmentRental> rentalList = rentalDAO.getRentalsByUser(user.getId());
         
         request.setAttribute("bookingList", bookingList);
         request.setAttribute("totalBookings", bookingList.size());
 
         // Open dashboard
         request.setAttribute("bookingList", bookingList);
+        request.setAttribute("rentalList", rentalList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("student-dashboard.jsp");
         dispatcher.forward(request, response);
     }
@@ -99,5 +105,3 @@ public class StudentDashboardServlet extends HttpServlet {
         return "Student Dashboard Servlet";
     }
 }
-
-

@@ -1,5 +1,5 @@
-//MVC COMPONENT: VIEW
-//Purpose: Display equipment booking form and show success/error messages
+<%--MVC COMPONENT: VIEW
+Purpose: Display equipment booking form and show success/error messages--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -183,19 +183,14 @@
             </div>
             
             <div class="form-group">
-                <label for="duration">Duration (hours)</label>
-                <select name="duration" id="duration">
-                    <option value="1">1 hour</option>
-                    <option value="2">2 hours</option>
-                    <option value="3">3 hours</option>
-                    <option value="4">4 hours</option>
-                </select>
+                <label for="returnDate">Return Date</label>
+                <input type="date" name="returnDate" id="returnDate" required>
             </div>
             
             <button type="submit" class="btn-submit">Submit Rental</button>
         </form>
         
-        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="StudentDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

@@ -1,5 +1,4 @@
-// MVC COMPONENT: MODEL
-// Purpose: Represents booking data and business logic
+
 package com.esukan.model;
 
 public class Booking {
@@ -24,13 +23,14 @@ public class Booking {
     public Booking() {
     }
     
-    public Booking(int bookingId, int userId, int facilityId, String date, 
+    public Booking(int bookingId, int userId, int facilityId,String facilityName, String date, 
                    String startTime, String endTime, int playerNumber, String status,int rentalId, int equipmentId
                    ,int quantity, String rentalDate, String returnDate, String equipmentStatus) 
                    {
         this.bookingId = bookingId;
         this.userId = userId;
         this.facilityId = facilityId;
+        this.facilityName = facilityName;
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;

@@ -6,6 +6,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="com.esukan.model.Booking"%>
+<%@page import="com.esukan.model.EquipmentRental"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
@@ -41,7 +42,7 @@
         <h1>E-SUKAN MANAGER DASHBOARD</h1>
 
         <nav>
-            <a href="viewBooking_manager.jsp">Booking Management</a>            
+            <a href="ViewBookingManagerServlet">Booking Management</a>            
             <a href="LogoutServlet"class="logout-btn">Logout</a>
         </nav>
 
@@ -91,7 +92,7 @@
                 </tr>
 
                 <% 
-                    List<Booking> bookingList = (List<Booking>) request.getAttribute("bookingList");
+                    List<Booking> bookingList = (List<Booking>) request.getAttribute("facilityBookings");
                     
                     if (bookingList !=null && !bookingList.isEmpty()){
                         for (Booking booking : bookingList){
@@ -100,7 +101,7 @@
                 <tr>
                     <td><%= booking.getStudentName()%></td>
                     <td><%= booking.getFacilityName()%></td>
-                    <td><%= booking.getBookingDate()%></td>
+                    <td><%= booking.getDate()%></td>
                     <td><%= booking.getStatus()%></td>
                 </tr>
                 
@@ -120,6 +121,36 @@
 
             </table>
 
+        </div>
+        <div class="table-section">
+            <h2>Recent Equipment Rental Requests</h2>
+            <table>
+                <tr>
+                    <th>Student</th>
+                    <th>Equipment</th>
+                    <th>Quantity</th>
+                    <th>Return Date</th>
+                </tr>
+                <% 
+                    List<EquipmentRental> rentalList = (List<EquipmentRental>) request.getAttribute("equipmentRentals");
+                    if (rentalList != null && !rentalList.isEmpty()){
+                        for (EquipmentRental rental : rentalList){
+                %>
+                <tr>
+                    <td><%= rental.getStudentName() %></td>
+                    <td><%= rental.getEquipmentName() %></td>
+                    <td><%= rental.getQuantity() %></td>
+                    <td><%= rental.getReturnDate() %></td>
+                </tr>
+                <%
+                        }
+                    } else {
+                %>
+                <tr>
+                    <td colspan="4" style="text-align: center;">No equipment rental records found.</td>
+                </tr>
+                <% } %>
+            </table>
         </div>
 
         <!-- Equipment Alerts -->

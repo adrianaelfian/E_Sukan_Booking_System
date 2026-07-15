@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : student-dashboard
     Created on : Jul 9, 2026, 8:24:10 AM
@@ -7,11 +8,18 @@
 
 <%@page import="java.util.List"%>
 <%@page import="com.esukan.model.Booking"%>
+<%@page import="com.esukan.model.EquipmentRental"%>
 
 
 <%
     List<Booking> bookingList =
             (List<Booking>) request.getAttribute("bookingList");
+    
+    List<EquipmentRental> rentalList = (List<EquipmentRental>) request.getAttribute("rentalList");
+    
+    if (rentalList == null) {
+        rentalList = new java.util.ArrayList<EquipmentRental>();
+    }
 
     Integer totalBookings =
             (Integer) request.getAttribute("totalBookings");
@@ -64,7 +72,7 @@
         <p>Borrow sports equipment for training and games.</p>
     </a>
 
-    <a href="viewBookings_student.jsp" class="action-card">
+    <a href="BookingServlet?action=view" class="action-card">
         <h3>View My Bookings</h3>
         <p>Check all current and previous bookings.</p>
     </a>
@@ -86,32 +94,86 @@
                         <th style="padding: 12px 15px; color: #18392b; font-weight: bold;">Actions</th> <!-- Kolum Butang -->
                     </tr>
                 </thead>
+                
+                <p>Total bookings: <%= bookingList.size() %></p>
+                
                 <tbody>
-                    <tr>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">Badminton Court A</td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">15 Jun 2026</td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
-                            <span style="background-color: #d4edda; color: #155724; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Confirmed</span>
-                        </td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
-                            <!-- Jika dah Confirmed, butang disekat (disabled) -->
-                            <button disabled style="background-color: #cccccc; color: #666; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: not-allowed; font-size: 0.8rem; margin-right: 5px;">Edit</button>
-                            <button disabled style="background-color: #cccccc; color: #666; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: not-allowed; font-size: 0.8rem;">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">Futsal Court 1</td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd; font-size: 0.95rem;">16 Jun 2026</td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
-                            <span style="background-color: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Pending</span>
-                        </td>
-                        <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
-                            <!-- Jika masih Pending, student boleh klik Edit & Cancel -->
-                            <a href="booking-facility.jsp" style="background-color: #ffc107; color: #333; text-decoration: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 5px; display: inline-block;">Edit</a>
-                            <button onclick="alert('Booking for Futsal Court 1 has been canceled successfully!')" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.8rem;">Cancel</button>
-                        </td>
-                    </tr>
-                </tbody>
+
+                <%
+                for (Booking booking : bookingList) {
+                %>
+
+                <tr>
+
+                <td style="padding:12px 15px;">
+                <%= booking.getFacilityName() %>
+                </td>
+
+                <td style="padding:12px 15px;">
+                <%= booking.getDate() %>
+                </td>
+
+                <td style="padding:12px 15px;">
+
+                <%
+                if("Pending".equalsIgnoreCase(booking.getStatus())){
+                %>
+
+                <span style="background:#fff3cd;color:#856404;padding:5px 10px;border-radius:20px;">
+                Pending
+                </span>
+
+                <%
+                } else {
+                %>
+
+               <span style="background:#d4edda;color:#155724;padding:5px 10px;border-radius:20px;">
+               <%= booking.getStatus() %>
+               </span>
+
+               <%
+                }
+                %>
+
+            </td>
+
+              <td style="padding:12px 15px;">
+
+              <%
+               if("Pending".equalsIgnoreCase(booking.getStatus())){
+              %>
+
+        <a href="BookingServlet?action=edit&bookingId=<%= booking.getBookingId() %>"
+           style="background:#ffc107;color:black;padding:5px 10px;text-decoration:none;border-radius:4px;margin-left: 10px">
+            Edit
+        </a>
+
+        <a href="BookingServlet?action=cancel&bookingId=<%= booking.getBookingId() %>"
+           style="background:#dc3545;color:white;padding:5px 10px;text-decoration:none;border-radius:4px;margin-left: 10px">
+            Cancel
+        </a>
+
+        <%
+        } else {
+        %>
+
+        <button disabled>Edit</button>
+        <button disabled>Cancel</button>
+
+        <%
+        }
+        %>
+
+            </td>
+
+        </tr>
+
+        <%
+        }
+        %>
+
+</tbody>
+               
             </table>
         </div>
     </div>
@@ -192,19 +254,36 @@
             <h2>My Equipment Rentals</h2>
 
             <table>
-
-                <tr>
-                    <th>Equipment</th>
-                    <th>Return Date</th>
-                    <th>Status</th>
-                </tr>
-
-                <tr>
-                    <td>Badminton Racket</td>
-                    <td>17 Jun 2026</td>
-                    <td>Active</td>
-                </tr>
-
+                <thead>
+                    <tr>
+                        <th>Equipment</th>
+                        <th>Quantity</th>
+                        <th>Return Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% 
+                        if (rentalList != null && !rentalList.isEmpty()){
+                            for (EquipmentRental rental : rentalList){
+                    %>
+                    <tr>
+                        <td><%= rental.getEquipmentName() %></td>
+                        <td><%= rental.getQuantity() %></td>
+                        <td><%= rental.getReturnDate() %></td>
+                        <td><%= rental.getStatus() %></td>
+                    </tr>
+                    <%
+                           }
+                        } else {
+                    %>
+                    <tr>
+                        <td colspan="4" align="center">No equipment rentals found.</td>
+                    </tr>
+                    <%
+                        }
+                     %>
+                </tbody>
             </table>
 
         </div>

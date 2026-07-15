@@ -1,7 +1,8 @@
-//MVC COMPONENT: VIEW
-//Purpose: Display cancellation confirmation page
+<%--MVC COMPONENT: VIEW
+//Purpose: Display cancellation confirmation page--%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,43 +164,57 @@
         <h1>Cancel Booking</h1>
         <div class="subtitle">Confirm cancellation of your booking</div>
 
-        <%-- Display message from CONTROLLER --%>
-        <%
-            String message = (String) request.getAttribute("message");
-            if (message != null) {
-                String msgClass = "success";
-                if (request.getAttribute("messageType") != null && 
-                    request.getAttribute("messageType").equals("error")) {
-                    msgClass = "error";
-                }
-        %>
-            <div class="message <%= msgClass %>"><%= message %></div>
-        <% } %>
+        <%-- Paparan Mesej --%>
+        <c:if test="${not empty message}">
+            <div class="message ${messageType == 'error' ? 'error' : 'success'}">
+                ${message}
+            </div>
+        </c:if>
         
         <div class="warning-box">
             <strong>Warning:</strong>
             This action cannot be undone. Are you sure you want to cancel this booking?
         </div>
         
+        <%-- cancel-confirmation.jsp --%>
         <div class="booking-details">
-            <strong>Booking Details:</strong>
-            ID: ${booking.bookingId}<br>
-            Facility: ${booking.facilityName}<br>
-            Date: ${booking.bookingDate}<br>
-            Time: ${booking.startTime} - ${booking.endTime}
+        <strong>Booking Details:</strong>
+        ID: ${booking.bookingId != null ? booking.bookingId : rental.rentalId}<br>
+    
+        <c:choose>
+            <c:when test="${type == 'booking'}">
+                Facility: ${item.facilityName}<br>
+                Date: ${item.date}<br>
+                Time: ${item.startTime} - ${item.endTime}
+            </c:when>
+            <c:otherwise>
+                Equipment: ${item.equipmentName}<br>
+                Quantity: ${item.quantity}<br>
+                Rental Date: ${item.rentalDate}<br>
+                Return Date: ${item.returnDate}
+            </c:otherwise>
+        </c:choose>
         </div>
-        
+
         <div class="btn-group">
-            <form action="BookingServlet" method="post" style="display: inline;">
+            <form action="BookingServlet" method="post">
                 <input type="hidden" name="action" value="cancel">
-                <input type="hidden" name="bookingId" value="${booking.bookingId}">
+                <%-- Hantar ID yang bersesuaian --%>
+                <c:choose>
+                    <c:when test="${type == 'booking'}">
+                        <input type="hidden" name="bookingId" value="${item.bookingId}">
+                    </c:when>
+                    <c:otherwise>
+                        <input type="hidden" name="rentalId" value="${item.rentalId}">
+                    </c:otherwise>
+                </c:choose>
+        
                 <button type="submit" class="btn-delete">Yes, Cancel Booking</button>
             </form>
-            <a href="view-bookings-student.jsp" class="btn-cancel">No, Go Back</a>
-        </div>
-        
+            <a href="BookingServlet?action=view" class="btn-cancel">No, Go Back</a>
+        </div> 
         <br>
-        <a href="index.jsp" class="btn-back">Back to Dashboard</a>
+        <a href="studentDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

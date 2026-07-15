@@ -150,3 +150,9 @@ th, td{
 .chart-item canvas{
     height:280px !important;
 }
+.btn-edit {
+    margin-right: 10px;
+}
+.btn-cancel {
+    margin-left: 10px;
+}

@@ -1,6 +1,7 @@
-//MVC COMPONENT: VIEW
-//Purpose: Display edit booking form with existing data
+<%--edit-booking.jsp:--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,38 +162,57 @@
         <% } %>
         
         <form action="BookingServlet" method="post">
-            <input type="hidden" name="action" value="updateBooking">
-            <input type="hidden" name="bookingId" value="${booking.bookingId}">
+            <%-- Gunakan c:choose untuk tentukan action --%>
+            <c:choose>
+                <c:when test="${not empty booking}">
+                    <input type="hidden" name="action" value="updateBooking">
+                    <input type="hidden" name="bookingId" value="${booking.bookingId}">
             
-            <div class="form-group">
-                <label for="facilityName">Facility</label>
-                <input type="text" id="facilityName" value="${booking.facilityName}" readonly>
-            </div>
+                    <div class="form-group">
+                        <label>Facility Name</label>
+                        <input type="text" value="${booking.facilityName}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" name="date" value="${booking.date}">
+                    </div>
+                    <div class="form-group">
+                        <label>Start Time</label>
+                        <input type="time" name="startTime" value="${booking.startTime}">
+                    </div>
+                    <div class="form-group">
+                        <label>End Time</label>
+                        <input type="time" name="endTime" value="${booking.endTime}">
+                    </div>
+                    <div class="form-group">
+                        <label>Player Number</label>
+                        <input type="number" name="playerNumber" value="${booking.playerNumber}">
+                    </div>
+                </c:when>
+        
+                <c:when test="${not empty rental}">
+                    <input type="hidden" name="action" value="updateRental">
+                    <input type="hidden" name="rentalId" value="${rental.rentalId}">
             
-            <div class="form-group">
-                <label for="bookingDate">Booking Date</label>
-                <input type="date" name="bookingDate" id="bookingDate" value="${booking.bookingDate}">
-            </div>
-            
-            <div class="form-group">
-                <label for="startTime">Start Time</label>
-                <input type="time" name="startTime" id="startTime" value="${booking.startTime}">
-            </div>
-            
-            <div class="form-group">
-                <label for="endTime">End Time</label>
-                <input type="time" name="endTime" id="endTime" value="${booking.endTime}">
-            </div>
-            
-            <div class="form-group">
-                <label for="numPlayers">Number of Players</label>
-                <input type="number" name="numPlayers" id="numPlayers" value="${booking.playerNumber}" min="1" max="20">
-            </div>
-            
-            <button type="submit" class="btn-update">Update Booking</button>
+                    <div class="form-group">
+                        <label>Equipment Name</label>
+                        <input type="text" value="${rental.equipmentName}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Rental Date</label>
+                        <input type="date" name="date" value="${rental.rentalDate}">
+                    </div>
+                    <div class="form-group">
+                        <label>Return Date</label>
+                        <input type="date" name="returnDate" value="${rental.returnDate}">
+                    </div>
+                </c:when>
+            </c:choose>
+    
+            <button type="submit" class="btn-update">Update Record</button>
         </form>
         
-        <a href="view-bookings-student.jsp" class="btn-back">Back to Bookings</a>
+        <a href="BookingServlet?action=view" class="btn-back">Back to Bookings</a>
     </div>
 </body>
 </html>
