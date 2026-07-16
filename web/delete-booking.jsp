@@ -1,5 +1,7 @@
-<%--MVC COMPONENT: VIEW
-//Purpose: Display cancellation confirmation page--%>
+<%--
+MVC: VIEW 
+Displays booking delete confirmation.
+--%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

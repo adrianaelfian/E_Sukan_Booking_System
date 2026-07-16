@@ -1,7 +1,9 @@
-<%-- 
-    Document   : manager-dashboard
-    Created on : Jul 9, 2026, 8:24:32 AM
-    Author     : user
+<%--
+MVC: VIEW
+Display the manager dashboard
+    - Show system statistics
+    - Display manager menu
+    - Receive data from ManagerDashboardServlet
 --%>
 
 <%@page import="java.util.List"%>
@@ -10,7 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    // Semak jika sesi masih wujud atau pengguna sudah login
+    // Verify that the user is loggged in.
     if (session == null || session.getAttribute("user") == null) {
         response.sendRedirect("login.jsp");
         return; // Hentikan pemprosesan JSP supaya kandungan dashboard tidak dipaparkan
@@ -22,6 +24,7 @@
     response.setHeader("Pragma", "no-cache"); // HTTP 1.0
     response.setDateHeader("Expires", 0); // Proxies
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,35 +43,41 @@
     <header class="header">
 
         <h1>E-SUKAN MANAGER DASHBOARD</h1>
-
+        
+        <!-- Manager navigation menu -->
         <nav>
             <a href="ViewBookingManagerServlet">Booking Management</a>            
             <a href="LogoutServlet"class="logout-btn">Logout</a>
         </nav>
 
     </header>
-
+    
+    <!-- Manager dashboard content -->
     <div class="container">
 
         <h2>System Overview</h2>
 
         <div class="summary">
-
+            
+            <!-- Display total number of bookings -->
             <div class="card">
                 <h3>Total Bookings</h3>
                 <p><%= request.getAttribute("totalBookings") %></p>
             </div>
-
+            
+            <!-- Display total number of facilities -->
             <div class="card">
                 <h3>Total Facilities</h3>
                 <p><%= request.getAttribute("totalFacilities") %></p>
             </div>
-
+            
+            <!-- Display total number of equipment -->
             <div class="card">
                 <h3>Total Equipment</h3>
                 <p><%= request.getAttribute("totalEquipment") %></p>
             </div>
-
+            
+            <!-- Display available equipment count -->
             <div class="card">
                 <h3>Available Equipment</h3>
                 <p><%= request.getAttribute("availableEquipment") %></p>
@@ -91,6 +100,7 @@
                     <th>Status</th>
                 </tr>
 
+                <%--Retrieve booking records sent by ManagerDashboardServlet.--%>
                 <% 
                     List<Booking> bookingList = (List<Booking>) request.getAttribute("facilityBookings");
                     
@@ -110,6 +120,7 @@
                     } else {
                 %>
                 
+                <%-- Display message when no booking records are available --%>
                 <tr>
                     <td colspan="4" style="text-align: center;">
                         No booking records found.
@@ -131,6 +142,8 @@
                     <th>Quantity</th>
                     <th>Return Date</th>
                 </tr>
+                
+                <%--Retrieve equipment rental records sent by ManagerDashboardServlet.--%>
                 <% 
                     List<EquipmentRental> rentalList = (List<EquipmentRental>) request.getAttribute("equipmentRentals");
                     if (rentalList != null && !rentalList.isEmpty()){
@@ -146,6 +159,8 @@
                         }
                     } else {
                 %>
+                
+                <%-- Display message when no rental records are available --%>
                 <tr>
                     <td colspan="4" style="text-align: center;">No equipment rental records found.</td>
                 </tr>

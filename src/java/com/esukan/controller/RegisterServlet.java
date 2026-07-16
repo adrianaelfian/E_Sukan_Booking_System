@@ -1,3 +1,12 @@
+/*
+ * MVC: CONTROLLER
+ * Handles new user registration.
+ * - Receive registration form data
+ * - Validate user input
+ * - Call UserDAO to insert new user
+ * - Redirect user after registration
+ */
+
 package com.esukan.controller;
 
 import java.io.IOException;

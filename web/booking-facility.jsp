@@ -1,3 +1,11 @@
+<%-- 
+MVC : VIEW
+Display the facility booking form for students.
+    - Display booking form
+    - Collect booking information
+    - Submit booking request to BookingServlet
+--%>
+
 <%
     if (session == null || session.getAttribute("user") == null) {
         response.sendRedirect("login.jsp");

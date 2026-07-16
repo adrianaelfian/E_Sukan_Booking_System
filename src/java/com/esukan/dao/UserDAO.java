@@ -1,4 +1,10 @@
-// model
+/*
+ * MVC: MODEL (DAO)
+ * Handles database operations related to users.
+ * - Connect to MySQL database
+ * - Execute SQL queries
+ * - Insert, update, delete and retrieve user records
+ */
 package com.esukan.dao;
 
 import com.esukan.model.User;

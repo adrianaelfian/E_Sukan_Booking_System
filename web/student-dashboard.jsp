@@ -1,8 +1,9 @@
-
 <%-- 
-    Document   : student-dashboard
-    Created on : Jul 9, 2026, 8:24:10 AM
-    Author     : user
+MVC: VIEW
+Display the student dashboard after successful login.
+    - Display booking menu
+    - Navigate to booking functions
+    - Display student information
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -10,7 +11,7 @@
 <%@page import="com.esukan.model.Booking"%>
 <%@page import="com.esukan.model.EquipmentRental"%>
 
-
+<%--Retrieve booking and rental data sent by StudentDashboardServlet through request attributes--%>
 <%
     List<Booking> bookingList =
             (List<Booking>) request.getAttribute("bookingList");
@@ -51,37 +52,40 @@
     <header class="header">
 
         <h1>E-SUKAN DASHBOARD</h1>
-
+        
+        <!--Logout and end current user session-->
         <nav>
             <a href="logout.jsp" class="logout-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">Logout</a>
         </nav>
 
     </header>
     
+    <!--Quick navigation menu for student functions-->
     <h2>Quick Actions</h2>
 
 <div class="quick-actions">
-
+    
+    <!-- Navigate to facility booking page -->
     <a href="booking-facility.jsp" class="action-card">
         <h3>Book a Sport Facility</h3>
         <p>Reserve badminton, futsal or basketball courts.</p>
     </a>
-
+    
+    <!-- Navigate to equipment rental page -->
     <a href="booking-equipment.jsp" class="action-card">
         <h3>Rent Sports Equipment</h3>
         <p>Borrow sports equipment for training and games.</p>
     </a>
-
+    
+    <!-- View all booking records -->
     <a href="BookingServlet?action=view" class="action-card">
         <h3>View My Bookings</h3>
         <p>Check all current and previous bookings.</p>
     </a>
 
 </div>
-
-    <!-- ========================================== -->
-    <!-- JADUAL STATUS RINGKAS DENGAN BUTTON EDIT & CANCEL -->
-    <!-- ========================================== -->
+    
+    <!-- Display latest booking status with Edit and Cancel actions -->
     <div class="container" style="margin-bottom: -20px;">
         <div class="table-section" style="margin-top: 10px; margin-bottom: 20px;">
             <h2>My Quick Status Overview</h2>
@@ -138,7 +142,8 @@
             </td>
 
               <td style="padding:12px 15px;">
-
+            
+              <%-- Display booking status with different colour based on status --%>
               <%
                if("Pending".equalsIgnoreCase(booking.getStatus())){
               %>
@@ -181,7 +186,7 @@
 
     <div class="container">
 
-        <!-- Statistics -->
+        <!-- Display booking statistics -->
         <h2>System Overview</h2>
 
         <div class="summary">
@@ -208,7 +213,7 @@
 
         </div>
 
-        <!-- Upcoming Bookings -->
+        <!-- Display all upcoming booking records -->
         <div class="table-section">
 
             <h2>Upcoming Bookings</h2>
@@ -221,6 +226,7 @@
                     <th>Status</th>
                 </tr>
 
+                <%-- Display every booking in the upcoming bookings table --%>
                 <% 
                     if (bookingList != null && !bookingList.isEmpty()){
                         
@@ -236,6 +242,7 @@
                     } else {
                     %>
                     
+                    <%-- Display message when no booking records are found --%>
                     <tr>
                         <td colspan="3" align="center"> No booking found.</td>
                     </tr>
@@ -263,6 +270,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    <%-- Loop through every equipment rental record --%>
                     <% 
                         if (rentalList != null && !rentalList.isEmpty()){
                             for (EquipmentRental rental : rentalList){
@@ -307,7 +316,8 @@
     </div>
 
     <script>
-
+        
+        // Display facility usage trend throughout the day.
         new Chart(document.getElementById("usageChart"), {
 
             type: "line",
@@ -326,8 +336,7 @@
 
         });
 
-        /* Most Popular Facilities */
-
+        // Display percentage of bookings by facility type.
         new Chart(document.getElementById("facilityChart"), {
 
             type: "pie",

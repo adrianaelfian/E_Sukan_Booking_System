@@ -1,4 +1,11 @@
-<%--View (MVC)--%>
+<%--
+MVC: VIEW
+This jsp page provides the user interface for
+users to enter their email and password.
+    - Display login form
+    - Send user input to LoginServlet
+    - Display validation/error messages
+--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>

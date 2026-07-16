@@ -1,4 +1,9 @@
-
+/*
+ * MVC: MODEL
+ * Represents booking information.
+ * Contains booking attributes along with
+ * getter and setter methods.
+ */
 package com.esukan.model;
 
 public class Booking {

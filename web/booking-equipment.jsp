@@ -1,5 +1,10 @@
-<%--MVC COMPONENT: VIEW
-Purpose: Display equipment booking form and show success/error messages--%>
+<%--
+MVC: VIEW
+Display equipment rental booking form.
+    - Allow students to choose equipment
+    - Submit rental information to BookingServlet
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

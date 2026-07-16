@@ -1,5 +1,9 @@
-<%--MVC COMPONENT: VIEW
-Purpose: Display all bookings for manager with approve/reject buttons--%>
+<%-- 
+MVC: VIEW
+Display all booking records for managers.
+Data is provided by ViewBookingManagerServlet
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -199,7 +203,11 @@ th:nth-child(8) { width: 18%; } /* Action */
     </style>
 </head>
 <body>
+    
+    <!-- Main manager booking management container -->
     <div class="container">
+        
+        <!-- Indicates manager access level -->
         <div class="role-badge">Manager View - All Student Bookings</div>
         
         <h1>Manage Bookings</h1>
@@ -207,6 +215,8 @@ th:nth-child(8) { width: 18%; } /* Action */
 
         <%-- Display data from CONTROLLER with approve/reject buttons --%>
         <div class="section-title">Facility Bookings</div>
+        
+        <!-- Table displaying all facility booking requests -->
         <table>
             <thead>
                 <tr>
@@ -221,6 +231,8 @@ th:nth-child(8) { width: 18%; } /* Action */
                 </tr>
             </thead>
             <tbody>
+                
+                <%-- Display message if no facility bookings are available --%>
                 <c:choose>
                     <c:when test="${empty facilityBookings}">
                         <tr>
@@ -239,11 +251,13 @@ th:nth-child(8) { width: 18%; } /* Action */
                                 <td><span class="status-${booking.status.toLowerCase()}">${booking.status}</span></td>
                                 <td>
                                     <c:choose>
+                                        <%-- Only pending bookings can be approved or rejected --%>
                                         <c:when test="${booking.status == 'Pending'}">
                                             <a href="BookingServlet?action=approve&bookingId=${booking.bookingId}" class="btn-action btn-approve" onclick="return confirm('Approve this booking?')">Approve</a>
                                             <a href="BookingServlet?action=reject&bookingId=${booking.bookingId}" class="btn-action btn-reject" onclick="return confirm('Reject this booking?')">Reject</a>
                                         </c:when>
                                         <c:otherwise>
+                                            <%-- Display processed status for approved/rejected bookings --%>
                                             <span class="processed-text">Processed</span>
                                         </c:otherwise>
                                     </c:choose>
@@ -255,6 +269,7 @@ th:nth-child(8) { width: 18%; } /* Action */
             </tbody>
         </table>
         
+        <!-- Equipment rental requests submitted by students -->
         <div class="section-title">Equipment Rentals</div>
 <table>
     <thead>
@@ -271,6 +286,7 @@ th:nth-child(8) { width: 18%; } /* Action */
     </thead>
     <tbody>
         <c:choose>
+            <%-- Display message if no equipment rentals are available --%>
             <c:when test="${empty equipmentRentals}">
                 <tr>
                     <td colspan="7" class="empty-message">No equipment rental requests found.</td>
@@ -288,6 +304,7 @@ th:nth-child(8) { width: 18%; } /* Action */
                         <td><span class="status-${rental.status.toLowerCase()}">${rental.status}</span></td>
                         <td>
                             <c:choose>
+                                <%-- Only pending rentals can be approved or rejected --%>
                                 <c:when test="${rental.status == 'Pending'}">
                                     <a href="BookingServlet?action=approve&rentalId=${rental.rentalId}" class="btn-action btn-approve" onclick="return confirm('Approve this rental?')">Approve</a>
                                     <a href="BookingServlet?action=reject&rentalId=${rental.rentalId}" class="btn-action btn-reject" onclick="return confirm('Reject this rental?')">Reject</a>
@@ -303,7 +320,7 @@ th:nth-child(8) { width: 18%; } /* Action */
         </c:choose>
     </tbody>
 </table>
-        
+        <!-- Return to Manager Dashboard -->
         <a href="ManagerDashboardServlet" class="btn-back">Back to Dashboard</a>
     </div>
 </body>

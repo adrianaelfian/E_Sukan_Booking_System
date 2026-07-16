@@ -1,3 +1,9 @@
+<%--
+MVC: VIEW
+Home page of the E-Sukan Booking System.
+Provides navigation to Login and Registration pages.
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

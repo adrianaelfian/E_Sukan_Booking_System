@@ -1,3 +1,10 @@
+/*
+ * MVC: CONTROLLER
+ * Handles user logout.
+ * - Invalidate session
+ * - Redirect to login page
+ */
+
 package com.esukan.controller;
 
 import java.io.IOException;

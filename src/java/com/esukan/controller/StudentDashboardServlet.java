@@ -1,9 +1,10 @@
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MVC: CONTROLLER
+ * Retrieves student dashboard information.
+ * - Obtain student data
+ * - Forward data to student-dashboard.jsp
  */
+
 package com.esukan.controller;
 
 import com.esukan.dao.BookingDAO;

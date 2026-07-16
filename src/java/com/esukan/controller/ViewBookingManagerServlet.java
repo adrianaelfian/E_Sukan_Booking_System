@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MVC: CONTROLLER
+ * Retrieves all booking records for managers.
+ * - Call BookingDAO
+ * - Send booking list to viewBooking_manager.jsp
  */
+
 package com.esukan.controller;
 
 import java.io.IOException;

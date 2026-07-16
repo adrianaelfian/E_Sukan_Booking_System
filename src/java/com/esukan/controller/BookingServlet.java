@@ -1,4 +1,11 @@
-
+/*
+ * MVC: CONTROLLER
+ * Handles facility and equipment booking requests.
+ * - Receive booking information
+ * - Validate booking
+ * - Call BookingDAO
+ * - Redirect to booking confirmation page
+ */
 package com.esukan.controller;
 
 import com.esukan.dao.BookingDAO;
@@ -20,17 +27,23 @@ public class BookingServlet extends HttpServlet {
 
     private BookingDAO bookingDAO;
     
+    // Initialize the BookingDAO object when the servlet starts.
     @Override
     public void init() {
         bookingDAO = new BookingDAO();
     }
     
+    /*
+    * Handles HTTP GET requests.
+    * Used for viewing, editing, approving,
+    * rejecting and cancelling bookings.
+    */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
         
-        
+        // Process user action based on the requested operation.
         if ("view".equals(action)) {
             viewBookings(request, response);
         } else if ("approve".equals(action)) {
@@ -55,9 +68,16 @@ public class BookingServlet extends HttpServlet {
         }
     }
 
+    /*
+    * Handles HTTP POST requests.
+    * Used for creating, updating and
+    * cancelling bookings or rentals.
+    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Determine the submitted form action.
         String action = request.getParameter("action");
         
         if ("bookFacility".equals(action)) {
@@ -80,8 +100,15 @@ public class BookingServlet extends HttpServlet {
         }
     }
 
+    /*
+    * Processes a new sport facility booking.
+    * Retrieves form data, creates a Booking object,
+    * saves it using BookingDAO and redirects the user.
+    */
     private void bookFacility(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Verify that the user is logged in.
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null){
             response.sendRedirect("login.jsp");
@@ -103,6 +130,7 @@ public class BookingServlet extends HttpServlet {
         booking.setEndTime(endTime);
         booking.setPlayerNumber(playerNumber);
 
+        // Save the booking record into the database.
         boolean success = bookingDAO.addBooking(booking);
 
         if (success) {
@@ -114,6 +142,12 @@ public class BookingServlet extends HttpServlet {
         }
     }
     
+    
+    /*
+    * Processes a new equipment rental request.
+    * Creates an EquipmentRental object and
+    * stores it in the database.
+    */
     private void bookEquipment(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     HttpSession session = request.getSession(false);
@@ -163,6 +197,11 @@ public class BookingServlet extends HttpServlet {
     }
 }
 
+    /*
+     * Retrieves booking and rental records.
+     * Displays different data based on the
+     * user's role (Manager or Student).
+     */
     private void viewBookings(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     HttpSession session = request.getSession(false);
@@ -174,6 +213,7 @@ public class BookingServlet extends HttpServlet {
     
     User user = (User) session.getAttribute("user");
     
+    // Load all booking records for managers.
     if ("Manager".equalsIgnoreCase(user.getRole())) {
         // PERUBAHAN DI SINI:
         // Gunakan pemboleh ubah 'bookings' dan 'rentals' yang telah anda isytiharkan di atas
@@ -193,7 +233,10 @@ public class BookingServlet extends HttpServlet {
         request.getRequestDispatcher("viewBookings_student.jsp").forward(request, response);
     }
 }
-    
+    /*
+     * Approves a pending booking or
+     * equipment rental request.
+     */
     private void approveBooking(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     
@@ -210,6 +253,10 @@ public class BookingServlet extends HttpServlet {
         response.sendRedirect("ManagerDashboardServlet");
     }
 
+    /*
+     * Approves a pending booking or
+     * equipment rental request.
+     */
     private void rejectBooking(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     
@@ -225,6 +272,11 @@ public class BookingServlet extends HttpServlet {
         }
         response.sendRedirect("ManagerDashboardServlet");
     }
+    
+    /*
+     * Deletes the selected booking record
+     * from the database.
+     */
     private void cancelBooking(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int bookingId = Integer.parseInt(request.getParameter("bookingId"));
@@ -232,6 +284,10 @@ public class BookingServlet extends HttpServlet {
         response.sendRedirect("StudentDashboardServlet");
     }
     
+    /*
+     * Deletes the selected equipment
+     * rental record from the database.
+     */
     private void cancelRental(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int rentalId = Integer.parseInt(request.getParameter("rentalId"));
@@ -239,6 +295,10 @@ public class BookingServlet extends HttpServlet {
         response.sendRedirect("StudentDashboardServlet");
     }
 
+    /*
+     * Updates an existing booking record
+     * with the latest information.
+     */
     private void updateBooking(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
         int bookingId = Integer.parseInt(request.getParameter("bookingId"));
@@ -258,6 +318,10 @@ public class BookingServlet extends HttpServlet {
         response.sendRedirect("StudentDashboardServlet");
     }
     
+    /*
+     * Updates an existing equipment
+     * rental record.
+     */
     private void updateRental(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int rentalId = Integer.parseInt(request.getParameter("rentalId"));

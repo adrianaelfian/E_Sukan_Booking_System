@@ -1,3 +1,8 @@
+<%--
+MVC : VIEW
+Registration page for new users.
+Sends registration data to RegisterServlet.
+--%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -158,7 +163,8 @@
             <h1>E-SUKAN</h1>
             <p>Manage booking of court sport and rental of equipment</p>
         </div>
-        
+         
+        <!-- Register Form -->
         <div class="register-wrapper">
             <div class="register-container">
                 <div class="form-header">
@@ -172,27 +178,36 @@
                     String errorMsg = (String) request.getAttribute("errorMessage");
                     if(errorMsg != null) { 
                 %>
+                
+                <!--Error Message-->
                     <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 12px; border-radius: 6px; margin-bottom: 15px; text-align: center; font-size: 0.9rem; font-weight: bold;">
                         <%= errorMsg %>
                     </div>
                 <% } %>
+                
+                <!--Submit registration data to RegisterServlet-->
                 <form action="RegisterServlet" method="POST">
                     <input type="hidden" name="id" value="">
+                    
+                    <!--User Full Name -->
                     <div class="form-group">
                         <label>Full Name:</label>
                         <input type="text" name="fullName" placeholder="e.g. Nurul Adriana" required autocomplete="off">
                     </div>
                     
+                    <!-- User Email -->
                     <div class="form-group">
                         <label>Email Address:</label>
                         <input type="email" name="email" placeholder="example@email.com" required autocomplete="off">
                     </div>
-
+                    
+                    <!-- User Phone Number -->
                     <div class="form-group">
                         <label>Phone Number:</label>
                         <input type="text" name="phoneNumber" placeholder="e.g. 0123456789" required autocomplete="off">
                     </div>
                     
+                     <!-- User Role Selection -->
                     <div class="form-group">
                         <label>Register As:</label>
                         <select name="role" required>
@@ -202,19 +217,23 @@
                         </select>
                     </div>
                     
+                     <!-- User Password -->
                     <div class="form-group">
                         <label>Password:</label>
                         <input type="password" name="password" placeholder="Minimum 6 characters" required>
                     </div>
-
+                     
+                     <!-- Password Confirmation -->
                     <div class="form-group">
                         <label>Confirm Password:</label>
                         <input type="password" name="confirmPassword" placeholder="Re-enter your password" required>
                     </div>
                     
+                     <!-- Register Button -->
                     <button type="submit" class="btn">Register</button>
                 </form>
-
+                
+                <!-- Redirect existing users to login page -->
                 <a href="login.jsp" class="login-link">Already have an account? Login here</a>
             </div>
         </div>

@@ -1,4 +1,9 @@
-//Controller
+/*
+ * MVC: CONTROLLER
+ * Receives login requests from login.jsp.
+ * Validates user credentials using UserDAO.
+ * Redirects users to the appropriate dashboard.
+ */
 package com.esukan.controller;
 
 import com.esukan.dao.UserDAO;

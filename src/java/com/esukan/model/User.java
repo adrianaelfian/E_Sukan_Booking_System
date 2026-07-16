@@ -1,7 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * MVC: MODEL
+ * Represents a user entity in the E-Sukan Booking System.
+ * - Store user information
+ * - Provide getters and setters
+ * - Transfer data between Controller and DAO
  */
 package com.esukan.model;
 

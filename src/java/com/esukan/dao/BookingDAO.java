@@ -1,4 +1,11 @@
-
+/*
+ * MVC: MODEL (DAO)
+ * Handles all booking-related database operations.
+ * - Save booking
+ * - Update booking
+ * - Delete booking
+ * - Retrieve booking records
+ */
 
 package com.esukan.dao;
 

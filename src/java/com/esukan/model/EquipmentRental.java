@@ -1,3 +1,7 @@
+/*
+ * MVC: MODEL
+ * Represents an equipment rental transaction.
+ */
 package com.esukan.model;
 
 public class EquipmentRental {
